@@ -2564,23 +2564,60 @@
             const cols = ["A", "B", "C", "D", "E"];
 
             const updateSelectionUI = () => {
+                const selectedArr = Array.from(ch.selectedCells).sort();
+                
                 formatCells.forEach(cell => {
                     const col = cell.getAttribute("data-col");
+                    
+                    // Resetar estilos padrão do cabeçalho Excel
+                    cell.style.border = "1px solid var(--excel-border)";
+                    cell.style.backgroundColor = "";
+                    cell.style.color = "";
+                    
                     if (ch.selectedCells.has(col)) {
-                        cell.classList.add("cell-selected");
-                    } else {
-                        cell.classList.remove("cell-selected");
+                        // Aplicar fundo verde transparente da seleção
+                        cell.style.backgroundColor = "var(--excel-selection-bg)";
+                        
+                        // Aplicar borda verde espessa em cima e embaixo
+                        cell.style.borderTop = "2px solid var(--excel-selected-cell)";
+                        cell.style.borderBottom = "2px solid var(--excel-selected-cell)";
+                        
+                        // Se for a primeira célula da seleção (borda esquerda do retângulo)
+                        if (col === selectedArr[0]) {
+                            cell.style.borderLeft = "2px solid var(--excel-selected-cell)";
+                        } else {
+                            cell.style.borderLeft = "1px solid var(--excel-border)";
+                        }
+                        
+                        // Se for a última célula da seleção (borda direita do retângulo)
+                        if (col === selectedArr[selectedArr.length - 1]) {
+                            cell.style.borderRight = "2px solid var(--excel-selected-cell)";
+                        } else {
+                            cell.style.borderRight = "1px solid var(--excel-border)";
+                        }
                     }
                 });
 
-                // Destacar célula ativa (primeira selecionada)
-                const selectedArr = Array.from(ch.selectedCells).sort();
+                // Destacar célula ativa (a primeira clicada fica branca/limpa no Excel!)
                 formatCells.forEach(cell => cell.classList.remove("cell-active"));
                 if (selectedArr.length > 0) {
                     const firstCellCol = selectedArr[0];
                     const firstCell = Array.from(formatCells).find(c => c.getAttribute("data-col") === firstCellCol);
-                    if (firstCell) firstCell.classList.add("cell-active");
+                    if (firstCell) {
+                        firstCell.classList.add("cell-active");
+                        
+                        // Manter branca como no Excel
+                        firstCell.style.backgroundColor = "#FFFFFF";
+                        
+                        // Se estiver em modo escuro, usa o tom cinza-escuro da célula ativa
+                        if (document.body.classList.contains("dark-mode")) {
+                            firstCell.style.backgroundColor = "#252423";
+                        }
+                    }
                 }
+
+                // Garantir aplicação de cores e bordas finais se a formatação já foi executada
+                applyFormatStyles();
 
                 // Atualizar texto de status
                 if (ch.selectedCells.size === 5) {
