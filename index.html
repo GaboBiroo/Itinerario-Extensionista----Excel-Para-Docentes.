@@ -2125,7 +2125,298 @@
             }
         }
 
-        /* Ajustes específicos para Tela Cheia no Projetor */
+        /* ================= ESTILOS DO PAINEL DE DOCUMENTAÇÃO ABNT ================= */
+        #documentation-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            background-color: #F3F2F1;
+            z-index: 90;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .doc-top-bar {
+            height: 48px;
+            background-color: var(--excel-green-hover);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .doc-top-bar .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .doc-top-bar .logo-area img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .doc-top-bar .logo-area span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+        }
+
+        .doc-top-bar .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .doc-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .doc-sidebar {
+            width: 260px;
+            background-color: #FFFFFF;
+            border-right: 1px solid var(--excel-border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 16px 0;
+            flex-shrink: 0;
+        }
+
+        .doc-sidebar-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #828282;
+            padding: 0 20px 10px 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .doc-menu-item {
+            padding: 10px 20px;
+            font-size: 0.82rem;
+            color: #484644;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.15s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .doc-menu-item:hover {
+            background-color: #FAF9F8;
+            color: var(--excel-green-hover);
+        }
+
+        .doc-menu-item.active {
+            background-color: var(--excel-green-light);
+            color: var(--excel-green-hover);
+            font-weight: 600;
+            border-left-color: var(--excel-green);
+        }
+
+        .doc-view {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            background-color: #F0F0F0;
+            display: flex;
+            justify-content: center;
+        }
+
+        .doc-paper {
+            background-color: #FFFFFF;
+            padding: 50px 70px;
+            max-width: 820px;
+            width: 100%;
+            min-height: 100%;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--excel-border);
+            position: relative;
+            animation: slide-up 0.4s cubic-bezier(0.1, 0.8, 0.25, 1);
+        }
+
+        /* Regras Formais ABNT */
+        .abnt-text {
+            font-family: 'Times New Roman', Times, serif, Georgia, 'Playfair Display';
+            color: #000000;
+            line-height: 1.5;
+            text-align: justify;
+        }
+
+        .abnt-p {
+            text-indent: 1.25cm;
+            margin-bottom: 12pt;
+            text-align: justify;
+        }
+
+        .abnt-quote {
+            margin-left: 4cm;
+            font-size: 10pt;
+            line-height: 1.2;
+            margin-bottom: 12pt;
+            text-align: justify;
+            color: #252423;
+            border-left: 2px solid var(--excel-border);
+            padding-left: 12px;
+            background-color: #FAF9F8;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+
+        .abnt-h1 {
+            font-size: 14pt;
+            font-weight: bold;
+            margin-top: 24pt;
+            margin-bottom: 12pt;
+            text-transform: uppercase;
+            color: #000000;
+            border-bottom: 1px solid var(--excel-border);
+            padding-bottom: 4px;
+        }
+
+        .abnt-h2 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 18pt;
+            margin-bottom: 12pt;
+            text-transform: uppercase;
+            color: #000000;
+        }
+
+        .abnt-h3 {
+            font-size: 12pt;
+            font-weight: bold;
+            margin-top: 12pt;
+            margin-bottom: 6pt;
+            color: var(--excel-green-hover);
+        }
+
+        .abnt-example-box {
+            background-color: #FFFDF0;
+            border-left: 4px solid #D4AF37;
+            border-radius: 4px;
+            padding: 12px 18px;
+            margin-bottom: 12pt;
+            font-size: 10pt;
+            line-height: 1.4;
+        }
+
+        .abnt-example-box h5 {
+            font-weight: bold;
+            color: #8A6D3B;
+            margin-bottom: 4px;
+            font-size: 10.5pt;
+        }
+
+        /* Suporte ao Modo Escuro na Documentação */
+        body.dark-mode #documentation-container {
+            background-color: #201F1E;
+        }
+
+        body.dark-mode .doc-sidebar {
+            background-color: #252423;
+            border-right-color: var(--excel-border);
+        }
+
+        body.dark-mode .doc-menu-item {
+            color: #D2D0CE;
+        }
+
+        body.dark-mode .doc-menu-item:hover {
+            background-color: #292827;
+            color: #a3e2bb;
+        }
+
+        body.dark-mode .doc-menu-item.active {
+            background-color: #1b3d22;
+            color: #FFFFFF;
+            border-left-color: var(--excel-green);
+        }
+
+        body.dark-mode .doc-view {
+            background-color: #292827;
+        }
+
+        body.dark-mode .doc-paper {
+            background-color: #252423;
+            border-color: var(--excel-border);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .abnt-text,
+        body.dark-mode .abnt-h1,
+        body.dark-mode .abnt-h2 {
+            color: #F3F2F1;
+        }
+
+        body.dark-mode .abnt-h3 {
+            color: #a3e2bb;
+        }
+
+        body.dark-mode .abnt-quote {
+            background-color: #1B1A19;
+            color: #D2D0CE;
+        }
+
+        body.dark-mode .abnt-example-box {
+            background-color: #332d12;
+            border-left-color: #D4AF37;
+        }
+
+        body.dark-mode .abnt-example-box h5 {
+            color: #E6C875;
+        }
+
+        /* Suporte ao Impressão ABNT */
+        @media print {
+            #documentation-container {
+                background-color: #FFFFFF !important;
+                height: auto !important;
+                width: 100% !important;
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                z-index: 2000 !important;
+            }
+            .doc-top-bar, 
+            .doc-sidebar {
+                display: none !important;
+            }
+            .doc-view {
+                padding: 0 !important;
+                background-color: #FFFFFF !important;
+                display: block !important;
+            }
+            .doc-paper {
+                box-shadow: none !important;
+                border: none !important;
+                padding: 3cm 2cm 2cm 3cm !important; /* Margens padrão ABNT na impressão */
+                margin: 0 !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                background-color: #FFFFFF !important;
+                color: #000000 !important;
+            }
+            .abnt-text {
+                color: #000000 !important;
+            }
+            .abnt-example-box {
+                background-color: #FFFFFF !important;
+                border: 1px solid #D2D0CE !important;
+                border-left: 4px solid #D4AF37 !important;
+                page-break-inside: avoid;
+            }
+        }
         #presentation-container:-webkit-full-screen {
             width: 100% !important;
             height: 100vh !important;
@@ -2156,6 +2447,10 @@
                 <!-- Botão de Tela Cheia para o Projetor -->
                 <button id="btn-toggle-fullscreen" class="next-challenge-btn" style="background-color: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.78rem; cursor: pointer;" title="Ativar Tela Cheia para Projetor">
                     <span id="fullscreen-btn-icon">🖥️</span> <span id="fullscreen-btn-text">Tela Cheia</span>
+                </button>
+                <!-- Botão de Documentação ABNT -->
+                <button id="btn-go-to-doc-top" class="next-challenge-btn" style="background-color: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.78rem; cursor: pointer;" title="Ir para a Documentação ABNT do Projeto">
+                    <span>📖</span> Documentação ABNT
                 </button>
                 <button id="btn-start-simulator-top" class="next-challenge-btn pulse-btn" style="background-color: #FFFFFF; color: var(--excel-green); display: flex; align-items: center; gap: 6px; font-weight: bold; border: 1px solid var(--excel-green); box-shadow: var(--shadow-sm);">
                     <span>🟢</span> Ambiente Virtual
@@ -2289,6 +2584,11 @@
                     <button id="btn-back-to-slides" class="share-btn" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.4); color: #FFFFFF; display: flex; align-items: center; gap: 4px; padding: 6px 12px; margin-right: 8px;" title="Voltar para a Apresentação de Slides (Teoria)">
                         <span style="font-size: 0.85rem;">📊</span>
                         <span style="margin-left: 2px; font-size: 0.75rem; font-weight: 500;">Slides</span>
+                    </button>
+                    <!-- Botão para ir para a Documentação ABNT -->
+                    <button id="btn-go-to-doc-excel" class="share-btn" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.4); color: #FFFFFF; display: flex; align-items: center; gap: 4px; padding: 6px 12px; margin-right: 8px;" title="Ir para a Documentação ABNT">
+                        <span style="font-size: 0.85rem;">📖</span>
+                        <span style="margin-left: 2px; font-size: 0.75rem; font-weight: 500;">Doc ABNT</span>
                     </button>
                     <!-- Botão de Modo Escuro (Dark Mode Toggle) -->
                     <button id="btn-dark-mode-toggle" class="share-btn" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.4); color: #FFFFFF;" title="Alternar Modo Escuro">
@@ -2572,6 +2872,42 @@
 
         </main>
 
+    </div>
+
+    <!-- Painel de Documentação ABNT -->
+    <div id="documentation-container" class="hidden" style="opacity: 0;">
+        <header class="doc-top-bar no-print">
+            <div class="logo-area">
+                <img src="excel_logo.png" alt="Excel Logo">
+                <span>Excel para Educadores - Documentação de Consulta</span>
+            </div>
+            <div class="nav-actions">
+                <button id="btn-doc-toggle-version" class="next-challenge-btn" style="background-color: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.78rem; cursor: pointer;" title="Alternar entre Versão Completa e Resumida">
+                    <span id="doc-version-icon">📄</span> <span id="doc-version-text">Versão Completa</span>
+                </button>
+                <button id="btn-doc-print" class="next-challenge-btn" style="background-color: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.78rem; cursor: pointer;" title="Imprimir Versão Resumida em Padrão ABNT">
+                    <span>🖨️</span> Imprimir Resumo
+                </button>
+                <button id="btn-doc-back" class="next-challenge-btn" style="background-color: #FFFFFF; color: var(--excel-green); display: flex; align-items: center; gap: 6px; font-weight: bold; border: 1px solid var(--excel-green); box-shadow: var(--shadow-sm);">
+                    <span>📊</span> Voltar aos Slides
+                </button>
+            </div>
+        </header>
+
+        <div class="doc-content">
+            <aside class="doc-sidebar no-print">
+                <div class="doc-sidebar-title">Sumário Acadêmico</div>
+                <div id="doc-menu-items">
+                    <!-- Gerado dinamicamente via JS -->
+                </div>
+            </aside>
+
+            <main class="doc-view">
+                <article class="doc-paper abnt-text" id="doc-paper-content">
+                    <!-- Gerado dinamicamente via JS -->
+                </article>
+            </main>
+        </div>
     </div>
 
     <!-- Modais e Sobreposições -->
@@ -3372,6 +3708,498 @@
                 
                 renderActiveSlide();
             }, 300);
+        }
+
+        // ================= SISTEMA DE DOCUMENTAÇÃO ABNT E DATASET =================
+        state.selectedDocChapter = 0;
+        state.isResumed = false;
+        
+        state.docChapters = [
+            // Chapter 0
+            {
+                title: "Introdução e Roteiro Metodológico",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 1: Introdução e Roteiro Metodológico</h1>
+                    <p class="abnt-p">
+                        O presente trabalho detalha o <strong>Itinerário Extensionista de Capacitação e Literacia Digital Escolar</strong>, um programa inovador voltado para a formação continuada de docentes da rede municipal. O principal objetivo do projeto é equipar professores e gestores com as competências técnicas necessárias para utilizar planilhas eletrônicas (Microsoft Excel) em suas rotinas de trabalho diárias.
+                    </p>
+                    <p class="abnt-p">
+                        A metodologia ativa adotada permite que a teoria apresentada em slides acadêmicos se converta imediatamente em prática laboratorial simulada. Ao remover gargalos de digitação manual de notas e frequências, a tecnologia atua como um elemento libertador, devolvendo ao docente o recurso mais escasso em sua jornada pedagógica: o tempo de mediação e afeto junto aos estudantes.
+                    </p>
+                    <div class="abnt-quote">
+                        "A literacia de dados não se resume a operar softwares. No contexto educacional, ela representa a capacidade de traduzir números frios em intervenções de acolhimento e resgate escolar. A tecnologia serve ao humano, e nunca o contrário." (PRIANTI, 2026, p. 12)
+                    </div>
+                    <p class="abnt-p">
+                        Este projeto foi desenvolvido sob a coordenação e autoria do professor <strong>Juliano Prianti</strong> (Docente Idealizador e Autor do Itinerário), contando com o suporte técnico e desenvolvimento de TI de <strong>Gabriel H. Rodrigues</strong> (Suporte e Infraestrutura Tecnológica). Esta parceria representa a união harmônica entre a pedagogia escolar e a excelência no design de software.
+                    </p>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Introdução e Roteiro Metodológico (Resumo)</h1>
+                    <p class="abnt-p">
+                        Este itinerário descreve a capacitação continuada de professores em Microsoft Excel, voltada para otimizar rotinas burocráticas escolares. Desenvolvido pelo Autor <strong>Juliano Prianti</strong> e com suporte de <strong>Gabriel H. Rodrigues</strong>, o projeto propõe o uso pedagógico de dados para intervenções ativas de acolhimento, otimizando o tempo docente em sala de aula.
+                    </p>
+                `
+            },
+            // Chapter 1
+            {
+                title: "O Poder do Excel para Educadores",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 2: O Poder das Planilhas Eletrônicas na Prática Docente</h1>
+                    <p class="abnt-p">
+                        O domínio de ferramentas digitais como o Microsoft Excel traz três pilares fundamentais de empoderamento ao professor:
+                    </p>
+                    <h2 class="abnt-h2">1. Otimização do Tempo de Trabalho</h2>
+                    <p class="abnt-p">
+                        Cálculos de médias, soma de faltas, e tabulação de dados demográficos de turmas consomem horas preciosas do professor extraclasse. Com a automação, planilhas realizam essas tarefas instantaneamente, minimizando o estresse e prevenindo a síndrome de burnout docente.
+                    </p>
+                    <h2 class="abnt-h2">2. Pedagogia Baseada em Evidências (Dados)</h2>
+                    <p class="abnt-p">
+                        Planilhas bem estruturadas permitem mapear o diagnóstico inicial da turma, localizar descritores de aprendizagem com baixos índices de acerto, e identificar precisamente em quais competências os alunos apresentam defasagem, facilitando o planejamento de aulas de reforço personalizadas.
+                    </p>
+                    <h2 class="abnt-h2">3. Automação e Redução da Burocracia Escolar</h2>
+                    <p class="abnt-p">
+                        Gerar diários de classe automatizados, relatórios de conselho escolar formatados e consolidados, além de organizar dados em segundos, liberta a secretaria escolar e o corpo docente da morosidade de papéis e digitações redundantes nos sistemas municipais.
+                    </p>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">O Poder do Excel para Educadores (Resumo)</h1>
+                    <p class="abnt-p">
+                        O domínio do Excel baseia-se em três pilares: otimização de tempo (redução de estresse e retrabalho), pedagogia baseada em dados (planejamento baseado nas defasagens dos alunos) e redução da burocracia escolar (geração rápida de diários de classe e relatórios do conselho).
+                    </p>
+                `
+            },
+            // Chapter 2
+            {
+                title: "1. Anatomia do Excel",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 3: Anatomia do Excel e Conceitos de Interface</h1>
+                    <p class="abnt-p">
+                        A interface do Excel é composta por elementos estruturais organizados logicamente: a Fita de Opções (Ribbon) que abriga os menus de comandos; a Barra de Fórmulas para manipulação exata; e as grades organizadas em Colunas (identificadas por letras) e Linhas (por números). A célula representa a interseção destas coordenadas (ex: A1).
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Mapeamento de Layout de Sala de Aula</h5>
+                        No início do ano letivo, o professor pode organizar a distribuição física das carteiras dos alunos na planilha usando a grade de coordenadas (A1 a F6) para planejar posições estratégicas de alunos com necessidades de atenção ou TDAH.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Registro de Ativos e Chromebooks</h5>
+                        A equipe de coordenação usa as células para criar o inventário de carrinhos de computação e Chromebooks da escola, mapeando por número de série, estado de conservação e data da última manutenção.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Planejador de Aulas Semanal</h5>
+                        Organizar o cronograma de conteúdos de forma matricial, onde cada linha representa um dia da semana e cada coluna representa uma disciplina, facilitando o compartilhamento do plano com a gestão escolar.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Anatomia do Excel (Resumo)</h1>
+                    <p class="abnt-p">
+                        Compreende a estrutura básica da planilha (linhas, colunas, fita de opções, células e barra de fórmulas). 
+                        <strong>Exemplos Escolares:</strong> (1) Mapeamento físico de carteiras em sala de aula (coordenadas de A1 a F6); (2) Controle de empréstimo de Chromebooks escolares; (3) Organização do plano semanal de aulas.
+                    </p>
+                `
+            },
+            // Chapter 3
+            {
+                title: "2. Formatação Pedagógica",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 4: Formatação Pedagógica de Planilhas</h1>
+                    <p class="abnt-p">
+                        Uma planilha mal formatada induz a erros graves de lançamento de dados pedagógicos nos sistemas da prefeitura. A aplicação correta de cores institucionais (Verde Excel), contraste de texto adequado e preenchimento de todas as bordas estruturais garante leitura rápida e previne a fadiga visual do professor.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Diário de Classe Legível</h5>
+                        Formatar a tabela de presença de uma turma inteira com cores suaves e bordas delimitadas. Isso ajuda o professor a não errar a linha correspondente ao nome do aluno ao realizar a chamada diária.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Calendário de Avaliações</h5>
+                        Destacar os cabeçalhos de bimestres e as colunas de datas de provas na cor cinza e verde, conferindo destaque para que os alunos ou pais leiam com clareza os prazos de entregas.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Grelha de Fluência de Leitura</h5>
+                        Utilizar fontes sans-serif limpas e margens internas em tabelas de fluência de leitura no Ensino Fundamental I para facilitar o preenchimento de diagnósticos rápidos de silábicos.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Formatação Pedagógica (Resumo)</h1>
+                    <p class="abnt-p">
+                        Consiste na estilização cuidadosa de tabelas com cores institucionais, fontes contrastantes e bordas delimitadoras de grade. 
+                        <strong>Exemplos Escolares:</strong> (1) Diário de presença visualmente limpo para evitar erros de chamada; (2) Calendário de avaliações destacado para divulgação à comunidade; (3) Grade de fluência leitora para séries iniciais.
+                    </p>
+                `
+            },
+            // Chapter 4
+            {
+                title: "3. Cálculo de Médias",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 5: Aritmética Escolar Automatizada</h1>
+                    <p class="abnt-p">
+                        O Excel elimina o cálculo manual em diários físicos. A função <code>=MÉDIA(B2:E2)</code> soma de forma dinâmica os valores numéricos contidos no intervalo selecionado e os divide pela quantidade de notas digitadas, ignorando de forma automática células vazias para alunos ausentes nas avaliações.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Média Escolar Bimestral</h5>
+                        Calcular automaticamente a nota final anual (Arthur Silva) com base nas notas individuais de cada um dos quatro bimestres letivos, gerando um resultado oficial sem risco de erro aritmético.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Média Geral da Classe</h5>
+                        Compilar a média total alcançada por toda a turma de 35 alunos em uma avaliação bimestral de Matemática para identificar a necessidade de revisão do plano de aula.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Consolidação de Notas de Projetos</h5>
+                        Mapear e calcular médias ponderadas de múltiplos critérios avaliativos em uma feira de ciências escolar, com pesos diferentes para escrita e apresentação.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Cálculo de Médias (Resumo)</h1>
+                    <p class="abnt-p">
+                        Utilização da função <code>=MÉDIA(B2:E2)</code> para somar e dividir notas de forma automatizada, poupando tempo.
+                        <strong>Exemplos Escolares:</strong> (1) Nota final anual do aluno Arthur Silva baseado nos 4 bimestres; (2) Média geral alcançada pela turma em Matemática; (3) Consolidação de notas de projetos e feira de ciências.
+                    </p>
+                `
+            },
+            // Chapter 5
+            {
+                title: "4. Lógica Condicional",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 6: Lógica Lançadora de Status</h1>
+                    <p class="abnt-p">
+                        A tomada de decisões na escola ganha eficiência máxima através da lógica condicional <code>=SE()</code>. Esta estrutura analisa uma condição lógica estabelecida (ex: se a média é maior ou igual a 6) e exibe automaticamente textos ou ações de acordo com o resultado da veracidade.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Julgamento de Status do Aluno</h5>
+                        Determinar automaticamente se o estudante foi aprovado ou se necessita de recuperação anual: <code>=SE(F2>=6;"APROVADO";"RECUPERAÇÃO")</code>.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Alertas de Faltas Excessivas</h5>
+                        Acionar avisos imediatos quando a frequência do discente cai abaixo dos limites legais definidos pela LDB: <code>=SE(Frequencia<75%;"Chamar Responsável";"Regular")</code>.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Suprimentos e Merenda Escolar</h5>
+                        Gerenciar o estoque da merenda escolar, disparando a frase "COMPRAR" quando a quantidade em quilos de um alimento estiver abaixo do estoque mínimo de segurança.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Lógica Condicional (Resumo)</h1>
+                    <p class="abnt-p">
+                        Aplicação da função lógica <code>=SE()</code> para automatizar a tomada de decisões com base em regras pedagógicas ou administrativas.
+                        <strong>Exemplos Escolares:</strong> (1) Status automatizado de "APROVADO" ou "RECUPERAÇÃO" para médias; (2) Alertas de risco de faltas ("Chamar Responsável"); (3) Alerta de reposição do estoque de merenda escolar.
+                    </p>
+                `
+            },
+            // Chapter 6
+            {
+                title: "5. O Mapa de Calor",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 7: Visualização Rápida com Mapa de Calor</h1>
+                    <p class="abnt-p">
+                        A Formatação Condicional converte números estáticos em alertas de risco instantâneos para o docente. Através da coloração do plano de fundo da célula em matizes suaves (vermelho claro para notas baixas, verde para altas), o cérebro do professor identifica imediatamente as prioridades de intervenção.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Destaque de Alunos em Defasagem</h5>
+                        Destacar automaticamente em Vermelho Claro todas as notas menores que 5.0 na planilha de médias gerais, permitindo montar a lista de reforço do contraturno escolar em segundos.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Alertas Críticos de Faltas</h5>
+                        Pintar as taxas de faltas acima de 25% com tom alaranjado vibrante na planilha de chamada, indicando alunos sob risco iminente de notificação ao Conselho Tutelar.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Mapeamento de Necessidades Especiais (AEE)</h5>
+                        Destacar com cores tags os atendimentos de alunos do AEE (Atendimento Educacional Especializado) para visualizar o cumprimento do cronograma de apoio psicopedagógico (Verde = Realizado, Amarelo = Pendente).
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">O Mapa de Calor (Resumo)</h1>
+                    <p class="abnt-p">
+                        Uso de regras automáticas de Formatação Condicional para colorir células com base em critérios, permitindo monitoramento de risco.
+                        <strong>Exemplos Escolares:</strong> (1) Pintar notas abaixo de 5.0 in vermelho para triagem rápida de reforço; (2) Pintar faltas graves em laranja; (3) Mapeamento de status de apoios do AEE.
+                    </p>
+                `
+            },
+            // Chapter 7
+            {
+                title: "6. Filtros de Evasão",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 8: Gestão de Filtros e Busca Ativa</h1>
+                    <p class="abnt-p">
+                        Planilhas com centenas de registros podem esconder problemas silenciosos. A ativação de filtros de tabela permite ao docente isolar temporariamente apenas as linhas que correspondem a critérios graves de evasão, gerando relatórios de monitoramento ágeis e organizados.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Isolamento de Alunos Infrequentes (Busca Ativa)</h5>
+                        Filtrar a planilha de presença total da escola para exibir apenas os educandos com frequência inferior a 75%. Isso gera um relatório imediato para o envio de mensagens de busca ativa escolar aos responsáveis.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Triagem de Alunos com Restrições Alimentares</h5>
+                        Em tabelas de matrícula, acionar filtros rápidos para isolar estudantes com alergias graves (ex: celíacos ou intolerantes à lactose), garantindo o repasse correto do plano de alimentação à cozinha da escola.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Listagem de Alunos Laudados (AEE)</h5>
+                        Isolar na base cadastral geral da escola os alunos que possuem CID ou laudos específicos para direcionar recursos federais de acessibilidade de forma justa.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Filtros de Evasão (Resumo)</h1>
+                    <p class="abnt-p">
+                        Utilização dos Filtros para ocultar linhas regulares e focar a atenção pedagógica em casos que demandam ação célere.
+                        <strong>Exemplos Escolares:</strong> (1) Isolamento de alunos infrequentes (<75%) para acionar a Busca Ativa; (2) Filtro de estudantes com intolerâncias alimentares para merenda; (3) Listagem rápida de alunos laudados (AEE).
+                    </p>
+                `
+            },
+            // Chapter 8
+            {
+                title: "7. O Localizador PROCV",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 9: Localização com a Função PROCV</h1>
+                    <p class="abnt-p">
+                        O PROCV (Procura Vertical) evita a busca manual demorada em longas bases cadastrais. O comando pesquisa o valor procurado na primeira coluna de uma tabela de busca e retorna o correspondente localizado na coluna indicada pelo índice. Sua estrutura é ideal para cruzar informações cadastrais.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Pesquisa de CPF de Aluno</h5>
+                        Pesquisar pelo nome completo do discente e extrair instantaneamente o número de CPF para lançamento de transferências: <code>=PROCV("Carlos";A2:B5;2;FALSO)</code>.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Consulta de Livro Didático</h5>
+                        Buscar o título de um livro e verificar em qual prateleira ou sala de leitura o exemplar está guardado na biblioteca escolar.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Localizador de Contato de Emergência</h5>
+                        Digitar o nome do aluno e trazer na tela em frações de segundos o telefone e o nome do responsável em caso de emergência ou mal-estar na sala.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">O Localizador PROCV (Resumo)</h1>
+                    <p class="abnt-p">
+                        Uso da fórmula `=PROCV` para cruzar dados verticalmente, localizando itens em bases volumosas instantaneamente.
+                        <strong>Exemplos Escolares:</strong> (1) Obter o CPF do aluno digitando seu nome; (2) Localizar a prateleira de livros didáticos pelo título; (3) Encontrar telefone de emergência de pais.
+                    </p>
+                `
+            },
+            // Chapter 9
+            {
+                title: "8. Integridade de Dados",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 10: Integridade e Validação de Dados escolares</h1>
+                    <p class="abnt-p">
+                        Erros de digitação geram refações legais imensas na secretaria da escola. A ferramenta Validação de Dados cria uma cerca digital nas células da planilha, rejeitando imediatamente entradas incoerentes (ex: uma nota escolar digitada como "11" por erro de pressa ou cansaço).
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Validação de Notas Oficiais</h5>
+                        Configurar as células de notas para aceitarem estritamente números Decimais entre 0.0 e 10.0, protegendo os boletins de erros acidentais de secretaria.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Calendário Escolar Homologado</h5>
+                        Restringir a entrada de datas in diários de bordo permitindo exclusivamente dias de semana compreendidos dentro do ano letivo oficial homologado.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Lista Suspensa de Turmas</h5>
+                        Criar um menu suspenso (lista) para preenchimento de cadastro, limitando a digitação apenas para turmas existentes (ex: 6º Ano A, 6º Ano B).
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Integridade de Dados (Resumo)</h1>
+                    <p class="abnt-p">
+                        Mecanismo de Validação de Dados que restringe as células a aceitarem valores sob regras rígidas para impedir inconsistências.
+                        <strong>Exemplos Escolares:</strong> (1) Limitar notas exclusivamente entre 0.0 e 10.0; (2) Restringir datas ao calendário de dias letivos; (3) Criar menu suspenso de turmas validadas.
+                    </p>
+                `
+            },
+            // Chapter 10
+            {
+                title: "9. Gráficos de Tendência",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 11: Comunicação Visual com Gráficos</h1>
+                    <p class="abnt-p">
+                        Apresentar tabelas repletas de números em conselhos de classe dificulta a visualização de padrões de evolução. Os gráficos traduzem dados em imagens de impacto. Para dados cronológicos, o Gráfico de Linhas é a ferramenta correta, demonstrando a inclinação do progresso (subidas ou quedas de notas).
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Evolução Temporal de Notas</h5>
+                        Gerar um gráfico de linhas mostrando as notas bimestrais de um aluno no contraturno escolar, ilustrando claramente se o reforço surtiu efeitos positivos.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Monitoramento de Matrículas</h5>
+                        Desenhar gráfico de colunas empilhadas para acompanhar a oscilação anual do número total de alunos matriculados na escola ao longo de cinco anos.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Distribuição de Níveis de Leitura</h5>
+                        Usar um gráfico de barras horizontais para comparar a porcentagem de leitores fluentes, silábicos e pré-silábicos entre as turmas de mesmo ano.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Gráficos de Tendência (Resumo)</h1>
+                    <p class="abnt-p">
+                        Visualização de dados complexos em representações gráficas claras. O gráfico de linhas é indicado para progresso temporal.
+                        <strong>Exemplos Escolares:</strong> (1) Evolução linear de notas pós-reforço escolar; (2) Acompanhamento anual de matrículas escolares; (3) Distribuição percentual de níveis de fluência leitora.
+                    </p>
+                `
+            },
+            // Chapter 11
+            {
+                title: "10. Segurança Escolar",
+                fullText: `
+                    <h1 class="abnt-h1">Capítulo 12: Segurança de Dados e Ética Docente (LGPD)</h1>
+                    <p class="abnt-p">
+                        A segurança de dados nas escolas municipais é uma obrigação moral e legal, regulada de forma estrita pela Lei Geral de Proteção de Dados (LGPD). Células que contêm cálculos e fórmulas essenciais do boletim devem ser bloqueadas de forma preventiva contra modificações indevidas.
+                    </p>
+                    <p class="abnt-p">
+                        Deixar planilhas sem senha em computadores coletivos de salas de professores ou transferir CPFs de responsáveis e relatórios médicos por redes abertas viola o dever profissional de sigilo. A proteção de planilhas resguarda a vida privada da criança.
+                    </p>
+                    <h2 class="abnt-h2">Cenários Práticos de Uso Escolar</h2>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 1: Bloqueio de Fórmulas Automáticas</h5>
+                        Bloquear células que contêm fórmulas lógicas de médias e SE. Assim, outros professores que lançam notas não alteram por engano a estrutura matemática da planilha.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 2: Envio Seguro de Boletins</h5>
+                        Ao exportar e compartilhar as planilhas pedagógicas via e-mail corporativo, proteger a aba com senha forte, impedindo edições não autorizadas externas.
+                    </div>
+                    <div class="abnt-example-box">
+                        <h5>Exemplo 3: Compartilhamento Docente Compartimentado</h5>
+                        Configurar a planilha compartilhada em nuvem municipal permitindo que cada professor edite exclusivamente as células da sua disciplina, deixando as demais protegidas.
+                    </div>
+                `,
+                summary: `
+                    <h1 class="abnt-h1">Segurança Escolar e Ética (Resumo)</h1>
+                    <p class="abnt-p">
+                        Implementação de bloqueio de fórmulas e senhas protetoras na planilha de acordo com preceitos éticos e as regras da LGPD escolar.
+                        <strong>Exemplos Escolares:</strong> (1) Bloqueio preventivo de células com fórmulas lógicas; (2) Envio seguro de notas sob senha para coordenação; (3) Compartilhamento com direitos de edição restritos por docente.
+                    </p>
+                `
+            }
+        ];
+
+        // Transição: Qualquer -> Documentação ABNT
+        function goToDocumentation() {
+            initAudio();
+            playSuccessSound();
+            
+            const presContainer = document.getElementById("presentation-container");
+            const appContainer = document.getElementById("app-container");
+            const docContainer = document.getElementById("documentation-container");
+            
+            presContainer.style.opacity = "0";
+            appContainer.style.opacity = "0";
+            
+            setTimeout(() => {
+                presContainer.classList.add("hidden");
+                appContainer.classList.add("hidden");
+                
+                docContainer.classList.remove("hidden");
+                docContainer.style.opacity = "0";
+                
+                // Forçar redesenho (reflow)
+                docContainer.offsetHeight;
+                
+                docContainer.style.opacity = "1";
+                docContainer.style.transition = "opacity 0.3s ease";
+                
+                // Renderizar o conteúdo
+                renderDocumentation();
+            }, 300);
+        }
+
+        // Transição: Documentação -> Slides
+        function goBackFromDoc() {
+            initAudio();
+            
+            const presContainer = document.getElementById("presentation-container");
+            const docContainer = document.getElementById("documentation-container");
+            
+            docContainer.style.opacity = "0";
+            setTimeout(() => {
+                docContainer.classList.add("hidden");
+                presContainer.classList.remove("hidden");
+                presContainer.style.opacity = "0";
+                
+                // Forçar redesenho (reflow)
+                presContainer.offsetHeight;
+                
+                presContainer.style.opacity = "1";
+                presContainer.style.transition = "opacity 0.3s ease";
+                
+                renderActiveSlide();
+            }, 300);
+        }
+
+        function renderDocumentation() {
+            const menuContainer = document.getElementById("doc-menu-items");
+            const paperContainer = document.getElementById("doc-paper-content");
+            if (!menuContainer || !paperContainer) return;
+            
+            // 1. Renderizar Menu lateral
+            menuContainer.innerHTML = "";
+            state.docChapters.forEach((chapter, idx) => {
+                const menuItem = document.createElement("div");
+                menuItem.className = `doc-menu-item ${idx === state.selectedDocChapter ? 'active' : ''}`;
+                menuItem.innerHTML = `<span>📖</span> ${chapter.title}`;
+                menuItem.addEventListener("click", () => {
+                    initAudio();
+                    state.selectedDocChapter = idx;
+                    renderDocumentation();
+                });
+                menuContainer.appendChild(menuItem);
+            });
+            
+            // 2. Renderizar Folha ABNT
+            const activeChapter = state.docChapters[state.selectedDocChapter];
+            const htmlContent = state.isResumed ? activeChapter.summary : activeChapter.fullText;
+            
+            paperContainer.innerHTML = `
+                <div class="abnt-text">
+                    ${htmlContent}
+                    
+                    <hr style="border: none; border-top: 1px dashed var(--excel-border); margin: 30px 0 15px 0;" class="no-print">
+                    
+                    <!-- Rodapé Acadêmico no rodapé da folha -->
+                    <div style="font-size: 9pt; text-align: center; color: #777777; margin-top: 30px; line-height: 1.4; border-top: 1px solid #CCCCCC; padding-top: 10px;" class="academic-footer">
+                        <strong>Rede Municipal de Educação — Capacitação Permanente em Literacia Digital</strong><br>
+                        Autor do Itinerário: Juliano Prianti | Suporte e TI: Gabriel H. Rodrigues<br>
+                        <em>Padrão Científico de Formatação NBR/ABNT — Documento de Consulta</em>
+                    </div>
+                </div>
+            `;
+            
+            // 3. Atualizar botão de visualização/versão
+            const toggleIcon = document.getElementById("doc-version-icon");
+            const toggleText = document.getElementById("doc-version-text");
+            if (toggleIcon && toggleText) {
+                if (state.isResumed) {
+                    toggleIcon.innerText = "📄";
+                    toggleText.innerText = "Versão Completa";
+                } else {
+                    toggleIcon.innerText = "📝";
+                    toggleText.innerText = "Versão Resumida";
+                }
+            }
+        }
+
+        function toggleDocVersion() {
+            initAudio();
+            state.isResumed = !state.isResumed;
+            renderDocumentation();
+        }
+
+        function printDocSummary() {
+            initAudio();
+            const wasResumed = state.isResumed;
+            
+            // Forçar modo resumido para a impressão
+            state.isResumed = true;
+            renderDocumentation();
+            
+            // Executar window.print()
+            setTimeout(() => {
+                window.print();
+                
+                // Restaurar o modo anterior de tela após fechar a tela de impressão
+                state.isResumed = wasResumed;
+                renderDocumentation();
+            }, 100);
         }
 
         // Ativar/Desativar Tela Cheia para o Projetor
@@ -5524,6 +6352,19 @@
 
             if (btnStartTop) btnStartTop.addEventListener("click", goToVirtualEnv);
             if (btnBackSlides) btnBackSlides.addEventListener("click", goToSlides);
+
+            // --- INICIALIZAÇÃO DA DOCUMENTAÇÃO ABNT ---
+            const btnGoToDocTop = document.getElementById("btn-go-to-doc-top");
+            const btnGoToDocExcel = document.getElementById("btn-go-to-doc-excel");
+            const btnDocBack = document.getElementById("btn-doc-back");
+            const btnDocToggleVersion = document.getElementById("btn-doc-toggle-version");
+            const btnDocPrint = document.getElementById("btn-doc-print");
+
+            if (btnGoToDocTop) btnGoToDocTop.addEventListener("click", goToDocumentation);
+            if (btnGoToDocExcel) btnGoToDocExcel.addEventListener("click", goToDocumentation);
+            if (btnDocBack) btnDocBack.addEventListener("click", goBackFromDoc);
+            if (btnDocToggleVersion) btnDocToggleVersion.addEventListener("click", toggleDocVersion);
+            if (btnDocPrint) btnDocPrint.addEventListener("click", printDocSummary);
 
             // Cliques de Tela Cheia e Impressão de Slides
             const btnFullscreen = document.getElementById("btn-toggle-fullscreen");
