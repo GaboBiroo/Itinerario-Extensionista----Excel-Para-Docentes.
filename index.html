@@ -1601,11 +1601,652 @@
         ::-webkit-scrollbar-thumb:hover {
             background: #A19F9D;
         }
+
+        /* ================= ESTILOS DO PAINEL DE APRESENTAÇÃO (HOME) ================= */
+        #presentation-container {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            height: 100vh;
+            background-color: #F3F2F1;
+            z-index: 100;
+            overflow: hidden;
+            transition: opacity 0.3s ease;
+        }
+
+        .pres-top-bar {
+            height: 48px;
+            background-color: var(--excel-green-hover);
+            color: #FFFFFF;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .pres-top-bar .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .pres-top-bar .logo-area img {
+            width: 24px;
+            height: 24px;
+            object-fit: contain;
+        }
+
+        .pres-top-bar .logo-area span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: -0.2px;
+        }
+
+        .pres-top-bar .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pres-content {
+            display: flex;
+            flex: 1;
+            overflow: hidden;
+        }
+
+        .pres-sidebar {
+            width: 260px;
+            background-color: #FFFFFF;
+            border-right: 1px solid var(--excel-border);
+            display: flex;
+            flex-direction: column;
+            overflow-y: auto;
+            padding: 16px 0;
+            flex-shrink: 0;
+        }
+
+        .pres-sidebar-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            font-weight: 700;
+            color: #828282;
+            padding: 0 20px 10px 20px;
+            letter-spacing: 0.5px;
+        }
+
+        .pres-menu-item {
+            padding: 10px 20px;
+            font-size: 0.82rem;
+            color: #484644;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: all 0.15s ease;
+            border-left: 3px solid transparent;
+        }
+
+        .pres-menu-item:hover {
+            background-color: #FAF9F8;
+            color: var(--excel-green-hover);
+        }
+
+        .pres-menu-item.active {
+            background-color: var(--excel-green-light);
+            color: var(--excel-green-hover);
+            font-weight: 600;
+            border-left-color: var(--excel-green);
+        }
+
+        .pres-slide-view {
+            flex: 1;
+            overflow-y: auto;
+            padding: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #FAF9F8;
+        }
+
+        .pres-slide-card {
+            background-color: #FFFFFF;
+            border-radius: 8px;
+            box-shadow: var(--shadow-lg);
+            width: 100%;
+            max-width: 900px;
+            min-height: 480px;
+            padding: 40px 50px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            border: 1px solid var(--excel-border);
+            border-top: 6px solid var(--excel-green);
+            animation: slide-up 0.4s cubic-bezier(0.1, 0.8, 0.25, 1);
+        }
+
+        .pres-slide-header {
+            margin-bottom: 20px;
+        }
+
+        .pres-slide-header h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.8rem;
+            color: var(--excel-green-hover);
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+
+        .pres-slide-body {
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            color: #323130;
+            margin-bottom: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .pres-slide-body p {
+            margin-bottom: 16px;
+        }
+
+        .pres-slide-body ul {
+            margin-left: 20px;
+            margin-bottom: 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .pres-slide-body li {
+            list-style-type: disc;
+        }
+
+        .pres-slide-body .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            margin-top: 10px;
+        }
+
+        .pres-slide-body .info-card {
+            background-color: #FAF9F8;
+            border: 1px solid var(--excel-border);
+            border-radius: 6px;
+            padding: 16px 20px;
+            transition: all 0.2s;
+        }
+
+        .pres-slide-body .info-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--excel-green);
+        }
+
+        .pres-slide-body .info-card h4 {
+            font-size: 0.92rem;
+            font-weight: 700;
+            color: var(--excel-green-hover);
+            margin-bottom: 6px;
+        }
+
+        .pres-slide-body .info-card p {
+            font-size: 0.82rem;
+            color: #484644;
+            margin-bottom: 0;
+            line-height: 1.4;
+        }
+
+        .pres-bottom-bar {
+            height: 52px;
+            background-color: #FFFFFF;
+            border-top: 1px solid var(--excel-border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 30px;
+            flex-shrink: 0;
+        }
+
+        .pres-progress-container {
+            flex: 1;
+            max-width: 300px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 0.78rem;
+            color: #605E5C;
+        }
+
+        .pres-progress-bar-outer {
+            flex: 1;
+            height: 4px;
+            background-color: #E1DFDD;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .pres-progress-bar-inner {
+            height: 100%;
+            background-color: var(--excel-green);
+            width: 5.55%;
+            transition: width 0.3s ease;
+        }
+
+        .pres-nav-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        /* Efeito de Pulsar no botão do Ambiente Virtual */
+        @keyframes pulse-green {
+            0% {
+                box-shadow: 0 0 0 0 rgba(16, 124, 65, 0.4);
+            }
+            70% {
+                box-shadow: 0 0 0 8px rgba(16, 124, 65, 0);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(16, 124, 65, 0);
+            }
+        }
+
+        .pulse-btn {
+            animation: pulse-green 2s infinite;
+        }
+
+        /* Fontes de Imagem Premium */
+        .sources-list {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            width: 100%;
+        }
+
+        .source-item {
+            background-color: #FAF9F8;
+            border: 1px solid var(--excel-border);
+            border-radius: 6px;
+            padding: 12px 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            transition: all 0.2s;
+        }
+
+        .source-item:hover {
+            border-color: var(--excel-green);
+            background-color: var(--excel-green-light);
+        }
+
+        .source-info-left {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            text-align: left;
+        }
+
+        .source-title-link {
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: #323130;
+            text-decoration: none;
+            transition: color 0.15s;
+        }
+
+        .source-title-link:hover {
+            color: var(--excel-green);
+            text-decoration: underline;
+        }
+
+        .source-domain {
+            font-size: 0.72rem;
+            color: #605E5C;
+            background-color: #E1DFDD;
+            padding: 2px 8px;
+            border-radius: 10px;
+            align-self: flex-start;
+        }
+
+        .source-url-btn {
+            background-color: #FFFFFF;
+            border: 1px solid var(--excel-border);
+            color: var(--excel-green);
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.15s;
+        }
+
+        .source-url-btn:hover {
+            background-color: var(--excel-green);
+            color: #FFFFFF;
+            border-color: var(--excel-green);
+        }
+
+        /* Suporte ao Modo Escuro no Painel de Apresentação */
+        body.dark-mode #presentation-container {
+            background-color: #201F1E;
+        }
+
+        body.dark-mode .pres-sidebar {
+            background-color: #252423;
+            border-right-color: var(--excel-border);
+        }
+
+        body.dark-mode .pres-sidebar-title {
+            color: #A19F9D;
+        }
+
+        body.dark-mode .pres-menu-item {
+            color: #D2D0CE;
+        }
+
+        body.dark-mode .pres-menu-item:hover {
+            background-color: #292827;
+            color: #a3e2bb;
+        }
+
+        body.dark-mode .pres-menu-item.active {
+            background-color: #1b3d22;
+            color: #FFFFFF;
+            border-left-color: var(--excel-green);
+        }
+
+        body.dark-mode .pres-slide-view {
+            background-color: #292827;
+        }
+
+        body.dark-mode .pres-slide-card {
+            background-color: #252423;
+            border-color: var(--excel-border);
+            border-top-color: var(--excel-green);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        body.dark-mode .pres-slide-header h2 {
+            color: #a3e2bb !important;
+        }
+
+        body.dark-mode .pres-slide-header span,
+        body.dark-mode .pres-slide-body {
+            color: #F3F2F1;
+        }
+
+        body.dark-mode .pres-slide-body .info-card {
+            background-color: #292827;
+            border-color: var(--excel-border);
+        }
+
+        body.dark-mode .pres-slide-body .info-card h4 {
+            color: #a3e2bb !important;
+        }
+
+        body.dark-mode .pres-slide-body .info-card p {
+            color: #D2D0CE;
+        }
+
+        body.dark-mode .pres-bottom-bar {
+            background-color: #252423;
+            border-top-color: var(--excel-border);
+        }
+
+        body.dark-mode .pres-progress-container {
+            color: #A19F9D;
+        }
+
+        body.dark-mode .pres-progress-bar-outer {
+            background-color: #323130;
+        }
+
+        body.dark-mode .source-item {
+            background-color: #292827;
+            border-color: var(--excel-border);
+        }
+
+        body.dark-mode .source-item:hover {
+            background-color: #1b3d22;
+            border-color: var(--excel-green);
+        }
+
+        body.dark-mode .source-title-link {
+            color: #F3F2F1;
+        }
+
+        body.dark-mode .source-title-link:hover {
+            color: #a3e2bb;
+        }
+
+        body.dark-mode .source-domain {
+            color: #D2D0CE;
+            background-color: #323130;
+        }
+
+        body.dark-mode .source-url-btn {
+            background-color: #252423;
+            border-color: var(--excel-border);
+            color: #a3e2bb;
+        }
+
+        body.dark-mode .source-url-btn:hover {
+            background-color: var(--excel-green);
+            color: #FFFFFF;
+            border-color: var(--excel-green);
+        }
+
+        /* Suporte ao Modo de Impressão (Conversão Nativa a PDF) */
+        @media print {
+            body {
+                background-color: #FFFFFF !important;
+                color: #000000 !important;
+            }
+            #app-container, 
+            .pres-top-bar, 
+            .pres-sidebar, 
+            .pres-bottom-bar,
+            .pulse-btn {
+                display: none !important;
+            }
+            #presentation-container {
+                background-color: #FFFFFF !important;
+                height: auto !important;
+                width: 100% !important;
+                position: absolute !important;
+                left: 0 !important;
+                top: 0 !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                z-index: 1000 !important;
+            }
+            .pres-content {
+                display: block !important;
+                height: auto !important;
+            }
+            .pres-slide-view {
+                padding: 0 !important;
+                background-color: #FFFFFF !important;
+                display: flex !important;
+                align-items: center !important;
+                justify-content: center !important;
+                height: 100vh !important;
+                width: 100vw !important;
+            }
+            .pres-slide-card {
+                box-shadow: none !important;
+                border: none !important;
+                border-top: 6px solid var(--excel-green) !important;
+                max-width: 100% !important;
+                width: 100% !important;
+                min-height: auto !important;
+                padding: 40px !important;
+                margin: 0 !important;
+                border-radius: 0 !important;
+                background-color: #FFFFFF !important;
+                color: #323130 !important;
+            }
+            .pres-slide-header h2 {
+                color: #0b592e !important;
+            }
+            .pres-slide-header p {
+                color: #605E5C !important;
+            }
+            .pres-slide-body {
+                color: #323130 !important;
+            }
+            .pres-slide-body .info-card {
+                background-color: #FAF9F8 !important;
+                border-color: #D2D0CE !important;
+                color: #323130 !important;
+            }
+            .pres-slide-body .info-card h4 {
+                color: #0b592e !important;
+            }
+            .pres-slide-body .info-card p {
+                color: #484644 !important;
+            }
+            .sources-list {
+                max-height: none !important;
+                overflow-y: visible !important;
+            }
+            .source-item {
+                background-color: #FAF9F8 !important;
+                border-color: #D2D0CE !important;
+                page-break-inside: avoid;
+            }
+            .source-url-btn {
+                display: none !important;
+            }
+        }
+
+        /* Ajustes específicos para Tela Cheia no Projetor */
+        #presentation-container:-webkit-full-screen {
+            width: 100% !important;
+            height: 100vh !important;
+            background-color: var(--pres-bg) !important;
+        }
+        #presentation-container:fullscreen {
+            width: 100% !important;
+            height: 100vh !important;
+            background-color: var(--pres-bg) !important;
+        }
     </style>
 </head>
 <body>
 
-    <div id="app-container">
+    <!-- Painel de Apresentação (Home) -->
+    <div id="presentation-container">
+        <!-- Top Bar for presentation -->
+        <header class="pres-top-bar">
+            <div class="logo-area">
+                <img src="excel_logo.png" alt="Excel Logo">
+                <span>Excel para Educadores - Capacitação Pedagógica</span>
+            </div>
+            <div class="nav-actions">
+                <!-- Botão de PDF / Impressão Nativa -->
+                <button id="btn-print-slides" class="next-challenge-btn" style="background-color: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.78rem; cursor: pointer;" title="Gerar PDF ou Imprimir Slide Atual">
+                    <span>🖨️</span> PDF / Imprimir
+                </button>
+                <!-- Botão de Tela Cheia para o Projetor -->
+                <button id="btn-toggle-fullscreen" class="next-challenge-btn" style="background-color: transparent; color: #FFFFFF; border: 1px solid rgba(255,255,255,0.4); display: flex; align-items: center; gap: 6px; font-weight: 500; font-size: 0.78rem; cursor: pointer;" title="Ativar Tela Cheia para Projetor">
+                    <span id="fullscreen-btn-icon">🖥️</span> <span id="fullscreen-btn-text">Tela Cheia</span>
+                </button>
+                <button id="btn-start-simulator-top" class="next-challenge-btn pulse-btn" style="background-color: #FFFFFF; color: var(--excel-green); display: flex; align-items: center; gap: 6px; font-weight: bold; border: 1px solid var(--excel-green); box-shadow: var(--shadow-sm);">
+                    <span>🟢</span> Ambiente Virtual
+                </button>
+            </div>
+        </header>
+
+        <div class="pres-content">
+            <!-- Sidebar for slides index -->
+            <aside class="pres-sidebar">
+                <div class="pres-sidebar-title">Sumário do Itinerário</div>
+                <div class="pres-menu-item active" data-slide="0">
+                    <span>1. Capa</span>
+                </div>
+                <div class="pres-menu-item" data-slide="1">
+                    <span>2. Introdução</span>
+                </div>
+                <div class="pres-menu-item" data-slide="2">
+                    <span>3. A Anatomia do Excel</span>
+                </div>
+                <div class="pres-menu-item" data-slide="3">
+                    <span>4. O Diário Visual</span>
+                </div>
+                <div class="pres-menu-item" data-slide="4">
+                    <span>5. Aritmética Automatizada</span>
+                </div>
+                <div class="pres-menu-item" data-slide="5">
+                    <span>6. Lógica Condicional</span>
+                </div>
+                <div class="pres-menu-item" data-slide="6">
+                    <span>7. O Mapa de Calor</span>
+                </div>
+                <div class="pres-menu-item" data-slide="7">
+                    <span>8. Filtros de Evasão</span>
+                </div>
+                <div class="pres-menu-item" data-slide="8">
+                    <span>9. O Localizador PROCV</span>
+                </div>
+                <div class="pres-menu-item" data-slide="9">
+                    <span>10. Integridade de Dados</span>
+                </div>
+                <div class="pres-menu-item" data-slide="10">
+                    <span>11. Gráficos de Tendência</span>
+                </div>
+                <div class="pres-menu-item" data-slide="11">
+                    <span>12. Segurança Escolar</span>
+                </div>
+                <div class="pres-menu-item" data-slide="12">
+                    <span>13. Ética e LGPD Escolar</span>
+                </div>
+                <div class="pres-menu-item" data-slide="13">
+                    <span>14. O Propósito Final</span>
+                </div>
+                <div class="pres-menu-item" data-slide="14">
+                    <span>15. Certificação</span>
+                </div>
+                <div class="pres-menu-item" data-slide="15">
+                    <span>16. Suporte & Autoria</span>
+                </div>
+                <div class="pres-menu-item" data-slide="16">
+                    <span>17. A Hora da Prática</span>
+                </div>
+                <div class="pres-menu-item" data-slide="17">
+                    <span>18. Referências</span>
+                </div>
+            </aside>
+
+            <!-- Main Slide Card View -->
+            <main class="pres-slide-view">
+                <article class="pres-slide-card" id="active-slide-card">
+                    <!-- Conteúdo dinâmico dos slides via JavaScript -->
+                </article>
+            </main>
+        </div>
+
+        <!-- Bottom Bar for slide controls -->
+        <footer class="pres-bottom-bar">
+            <div class="pres-progress-container">
+                <div class="pres-progress-bar-outer">
+                    <div id="pres-progress-bar-inner" class="pres-progress-bar-inner"></div>
+                </div>
+                <span id="pres-progress-text">Slide 1 de 18</span>
+            </div>
+            <div class="pres-nav-btns">
+                <button id="btn-prev-slide" class="next-challenge-btn" style="background-color: #F3F2F1; color: #323130; border: 1px solid var(--excel-border);">⬅ Anterior</button>
+                <button id="btn-next-slide" class="next-challenge-btn">Próximo ➡</button>
+            </div>
+        </footer>
+    </div>
+
+    <div id="app-container" class="hidden" style="opacity: 0;">
 
         <!-- Sidebar de Progresso -->
         <aside id="sidebar">
@@ -1644,6 +2285,11 @@
                 </div>
 
                 <div class="excel-user-profile">
+                    <!-- Botão para voltar para a apresentação teórica de slides -->
+                    <button id="btn-back-to-slides" class="share-btn" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.4); color: #FFFFFF; display: flex; align-items: center; gap: 4px; padding: 6px 12px; margin-right: 8px;" title="Voltar para a Apresentação de Slides (Teoria)">
+                        <span style="font-size: 0.85rem;">📊</span>
+                        <span style="margin-left: 2px; font-size: 0.75rem; font-weight: 500;">Slides</span>
+                    </button>
                     <!-- Botão de Modo Escuro (Dark Mode Toggle) -->
                     <button id="btn-dark-mode-toggle" class="share-btn" style="background-color: transparent; border: 1px solid rgba(255,255,255,0.4); color: #FFFFFF;" title="Alternar Modo Escuro">
                         <span id="dark-mode-icon" style="font-size: 0.85rem;">🌙</span>
@@ -2171,6 +2817,600 @@
                 }
             ]
         };
+
+        // Definição dos Slides da Apresentação Teórica (Home)
+        state.activeSlideIndex = 0;
+        state.slides = [
+            // Slide 1: Capa (Página 1 do PDF)
+            {
+                title: "Excel para Educadores",
+                subtitle: "Literacia de Dados e Gestão Eficiente na Rede Municipal",
+                content: `
+                    <div style="text-align: center; padding: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="font-size: 4.5rem; margin-bottom: 20px; color: var(--excel-green); filter: drop-shadow(0 4px 6px rgba(16,124,65,0.15));">📊</div>
+                        <h3 style="font-size: 1.3rem; color: var(--excel-green-hover); letter-spacing: 1px; margin-bottom: 16px; font-weight: 700;">CAPACITAÇÃO DOCENTE PERMANENTE</h3>
+                        <p style="font-size: 1.05rem; color: #484644; max-width: 620px; margin: 0 auto 30px auto; line-height: 1.6;">
+                            Dominar o uso de planilhas eletrônicas é um passo crucial para libertar o educador de processos manuais repetitivos, transformando diários de classe em ferramentas de gestão inteligente.
+                        </p>
+                        <button id="btn-start-presentation" class="next-challenge-btn pulse-btn" style="font-size: 1.05rem; padding: 14px 32px; border-radius: 6px; height: auto; font-weight: 600; box-shadow: var(--shadow-md);">
+                            Começar Itinerário ➜
+                        </button>
+                    </div>
+                `
+            },
+            // Slide 2: Introdução (Página 2 do PDF)
+            {
+                title: "Os 10 Passos da Literacia",
+                subtitle: "A tecnologia deve libertar o professor da burocracia",
+                content: `
+                    <p style="font-size: 1.05rem; margin-bottom: 20px; color: #323130;">
+                        Bem-vindo(a) ao seu <strong>Laboratório de Literacia Docente</strong>! Este itinerário formativo foi estruturado em <strong>10 desafios práticos</strong> para capacitá-lo na gestão diária de dados pedagógicos.
+                    </p>
+                    <p style="font-size: 1.02rem; margin-bottom: 24px; color: #484644; line-height: 1.6;">
+                        Vamos transformar listas de chamadas estáticas e diários físicos em sistemas automatizados e eficientes. A automação nos dá de volta o que há de mais precioso: o tempo de focar nos alunos.
+                    </p>
+                    <div class="info-grid">
+                        <div class="info-card">
+                            <h4>🎯 Estética Pedagógica</h4>
+                            <p>Tabelas claras e organizadas ajudam no fluxo de leitura e evitam erros cruciais de lançamento.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4>⚡ Prática Imediata</h4>
+                            <p>Após compreender a base teórica neste guia, você acionará o simulador prático interativo.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 3: 1. Anatomia do Excel (Página 3 do PDF)
+            {
+                title: "1. A Anatomia do Excel",
+                subtitle: "Dominando o Ambiente de Trabalho",
+                content: `
+                    <p>O primeiro passo do nosso Laboratório é dominar a interface visual do Excel. Você precisará reconhecer e interagir com 5 áreas essenciais:</p>
+                    <div style="display: flex; gap: 30px; margin-top: 15px; align-items: center;">
+                        <div style="flex: 1.2;">
+                            <ul style="margin: 0; padding-left: 20px; display: flex; flex-direction: column; gap: 12px; list-style-type: none;">
+                                <li style="position: relative; padding-left: 24px;"><span style="position: absolute; left: 0; color: var(--excel-green);">✓</span> <strong>Fita de Opções:</strong> Os menus superiores que agrupam comandos por abas de ação.</li>
+                                <li style="position: relative; padding-left: 24px;"><span style="position: absolute; left: 0; color: var(--excel-green);">✓</span> <strong>Barra de Fórmulas:</strong> O campo de texto longo para visualização e edição exata de fórmulas.</li>
+                                <li style="position: relative; padding-left: 24px;"><span style="position: absolute; left: 0; color: var(--excel-green);">✓</span> <strong>Cabeçalhos:</strong> Identificadores de colunas (Letras A, B, C) e linhas (Números 1, 2, 3).</li>
+                                <li style="position: relative; padding-left: 24px;"><span style="position: absolute; left: 0; color: var(--excel-green);">✓</span> <strong>Barra de Status:</strong> A faixa inferior que apresenta dados resumidos e status do sistema.</li>
+                            </ul>
+                        </div>
+                        <div class="info-card" style="flex: 0.8; background-color: var(--excel-green-light); border-color: var(--excel-green); padding: 20px; display: flex; flex-direction: column; justify-content: center; height: 100%;">
+                            <h4 style="margin-bottom: 8px;">🎮 No Desafio 1</h4>
+                            <p style="margin-bottom: 0;">Você passará por um reconhecimento de interface, localizando cada uma das áreas com cliques interativos.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 4: 2. O Diário Visual (Página 4 do PDF)
+            {
+                title: "2. O Diário Visual",
+                subtitle: "Preenchimento de Cabeçalhos e Bordas de Grade",
+                content: `
+                    <p style="margin-bottom: 20px;">Um diário de classe confuso induz a erros ao transferir as notas para os sistemas municipais. O visual das planilhas pedagógicas deve ser limpo e intuitivo.</p>
+                    <div class="info-grid">
+                        <div class="info-card" style="border-top: 4px solid var(--excel-green);">
+                            <h4 style="font-size: 1rem; margin-bottom: 8px; color: var(--excel-green-hover);">🎨 Preenchimento Verde</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: #484644;">
+                                No laboratório, você deverá selecionar o intervalo de cabeçalho <strong>A1:E1</strong> e usar a ferramenta Balde de Tinta na fita para aplicar um preenchimento <strong>Verde Escuro</strong>.
+                            </p>
+                        </div>
+                        <div class="info-card" style="border-top: 4px solid var(--excel-green);">
+                            <h4 style="font-size: 1rem; margin-bottom: 8px; color: var(--excel-green-hover);">🔳 Bordas Completas</h4>
+                            <p style="font-size: 0.85rem; line-height: 1.5; color: #484644;">
+                                Em seguida, acione o ícone de bordas no menu superior e ative <strong>Todas as Bordas</strong>, delimitando os dados e destacando a leitura e a estrutura da tabela.
+                            </p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 5: 3. Aritmética Automatizada (Página 5 do PDF)
+            {
+                title: "3. Aritmética Automatizada",
+                subtitle: "Calculando Médias sem Erro Humano",
+                content: `
+                    <p>O Excel descarta o uso de calculadoras externas. A função de cálculo automático soma os bimestres e divide ignorando células em branco.</p>
+                    <p>No terceiro desafio técnico do Laboratório, você calculará a média anual das notas do aluno Arthur Silva digitando a fórmula oficial:</p>
+                    <div style="background-color: #FAF9F8; border: 1px solid var(--excel-border); padding: 22px; border-radius: 6px; text-align: center; margin: 15px 0;">
+                        <code style="font-family: Consolas, monospace; font-size: 1.5rem; color: var(--excel-green-hover); font-weight: bold; background-color: #FFFFFF; padding: 8px 20px; border-radius: 4px; border: 1px solid var(--excel-border); display: inline-block; box-shadow: var(--shadow-sm);">
+                            =MÉDIA(B2:E2)
+                        </code>
+                        <p style="font-size: 0.8rem; color: #605E5C; margin-top: 10px; margin-bottom: 0;">
+                            (Indica que a média cobrirá as notas registradas nas células B2, C2, D2 e E2 correspondentes)
+                        </p>
+                    </div>
+                `
+            },
+            // Slide 6: 4. Lógica Condicional (Página 6 do PDF corrigida)
+            {
+                title: "4. Lógica Condicional",
+                subtitle: "O julgamento automático de médias com a função SE",
+                content: `
+                    <p>Vamos automatizar a tomada de decisões na escola! Em vez de digitar manualmente se o aluno foi aprovado ou está em recuperação, usaremos a função lógica <strong>=SE</strong>.</p>
+                    <p>A estrutura segue 3 parâmetros essenciais separados por ponto e vírgula <code>;</code>:</p>
+                    <div class="info-grid" style="margin-top: 12px;">
+                        <div class="info-card">
+                            <h4 style="color: #c07b1a;">1. Teste Lógico</h4>
+                            <p style="font-family: monospace; font-weight: bold; font-size: 0.9rem; margin-bottom: 4px;">B2>=6</p>
+                            <p style="font-size: 0.78rem; margin-bottom: 0;">Analisa se a média de Arthur em B2 é maior ou igual a 6.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4 style="color: var(--excel-green);">2. Se Verdadeiro</h4>
+                            <p style="font-family: monospace; font-weight: bold; font-size: 0.9rem; margin-bottom: 4px;">"APROVADO"</p>
+                            <p style="font-size: 0.78rem; margin-bottom: 0;">O resultado retornado se a nota de Arthur for igual ou superior a 6.</p>
+                        </div>
+                        <div class="info-card">
+                            <h4 style="color: #a4262c;">3. Se Falso</h4>
+                            <p style="font-family: monospace; font-weight: bold; font-size: 0.9rem; margin-bottom: 4px;">"RECUPERAÇÃO"</p>
+                            <p style="font-size: 0.78rem; margin-bottom: 0;">O resultado caso a média seja menor que 6.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 7: 5. O Mapa de Calor (Página 7 do PDF)
+            {
+                title: "5. O Mapa de Calor",
+                subtitle: "Identificando Alunos em Risco com Formatação Condicional",
+                content: `
+                    <p>O olhar pedagógico deve repousar com prioridade absoluta sobre os alunos que necessitam de intervenção pedagógica e recuperação imediata.</p>
+                    <p>A <strong>Formatação Condicional</strong> atua de forma automatizada, pintando o fundo das células com base nos critérios pedagógicos definidos.</p>
+                    <div class="info-card" style="margin-top: 15px; border-left: 5px solid #FF3B30; background-color: #FFF5F5;">
+                        <h4 style="color: #FF3B30; font-size: 1rem; margin-bottom: 6px;">📢 No Desafio do Laboratório</h4>
+                        <p style="color: #323130; margin-bottom: 0; font-size: 0.88rem; line-height: 1.5;">
+                            Você selecionará a coluna de Notas e ativará a <strong>Regra de Células: Menor que 5</strong> para pintar automaticamente em Vermelho Claro todas as notas baixas da tabela, criando um mapa de calor instantâneo.
+                        </p>
+                    </div>
+                `
+            },
+            // Slide 8: 6. Filtros de Evasão (Página 8 do PDF)
+            {
+                title: "6. Filtros de Evasão",
+                subtitle: "Acompanhamento Ativo de Frequência Escolar",
+                content: `
+                    <p>O Bolsa Família e as portarias do conselho tutelar exigem vigilância estrita sobre a evasão escolar e o absenteísmo dos educandos.</p>
+                    <div style="display: flex; gap: 20px; margin-top: 15px;">
+                        <div style="flex: 1; display: flex; flex-direction: column; gap: 12px;">
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <span style="font-size: 1.2rem; color: var(--excel-green);">🎯</span>
+                                <div>
+                                    <h5 style="font-size: 0.9rem; font-weight: 700; color: #323130; margin-bottom: 2px;">Filtro de Planilha</h5>
+                                    <p style="font-size: 0.8rem; color: #605E5C; margin-bottom: 0;">Você ativará o Filtro (ícone de funil) no cabeçalho da coluna <strong>Frequência</strong>.</p>
+                                </div>
+                            </div>
+                            <div style="display: flex; gap: 10px; align-items: flex-start;">
+                                <span style="font-size: 1.2rem; color: var(--excel-green);">⚠️</span>
+                                <div>
+                                    <h5 style="font-size: 0.9rem; font-weight: 700; color: #323130; margin-bottom: 2px;">Isolando Alunos em Risco</h5>
+                                    <p style="font-size: 0.8rem; color: #605E5C; margin-bottom: 0;">Configurará a opção para selecionar e isolar apenas os alunos com frequência <strong>menor que 75%</strong>, permitindo emitir relatórios de busca ativa.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info-card" style="flex: 0.8; background-color: #FAF9F8; display: flex; flex-direction: column; justify-content: center; margin-bottom: 0;">
+                            <h4 style="font-size: 0.9rem; margin-bottom: 6px;">💡 Importância</h4>
+                            <p style="font-size: 0.8rem; line-height: 1.4; color: #605E5C; margin-bottom: 0;">Com diários filtrados, as equipes de coordenação e assistência social atuam antes que a infrequência se converta em abandono definitivo.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 9: 7. O Localizador PROCV (Página 9 do PDF)
+            {
+                title: "7. O Localizador PROCV",
+                subtitle: "Pesquisando Dados de Alunos Instantaneamente",
+                content: `
+                    <p>Como extrair o CPF de um aluno específico no meio de uma planilha com mais de 800 cadastros? A função **PROCV** faz a busca vertical e devolve o valor.</p>
+                    <p>Preencheremos os quatro argumentos do assistente no simulador pedagógico:</p>
+                    <div style="overflow-x: auto; margin-top: 10px; border: 1px solid var(--excel-border); border-radius: 6px;">
+                        <table style="width: 100%; border-collapse: collapse; font-size: 0.82rem; text-align: left;">
+                            <thead>
+                                <tr style="background-color: var(--excel-green-hover); color: white;">
+                                    <th style="padding: 8px 12px;">Parâmetro</th>
+                                    <th style="padding: 8px 12px;">Significado Didático</th>
+                                    <th style="padding: 8px 12px;">Inserção no Simulador</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border); font-weight: 600;">1. Valor Procurado</td>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border); color: #484644;">O dado de referência que você já possui.</td>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border);"><code>"Carlos"</code> (entre aspas por ser texto)</td>
+                                </tr>
+                                <tr style="background-color: #FAF9F8;">
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border); font-weight: 600;">2. Matriz Tabela</td>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border); color: #484644;">A região de busca (cobre as colunas A e B).</td>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border);"><code>A2:B5</code></td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border); font-weight: 600;">3. Índice de Coluna</td>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border); color: #484644;">A contagem da coluna que contém a resposta.</td>
+                                    <td style="padding: 6px 12px; border-bottom: 1px solid var(--excel-border);"><code>2</code> (A coluna 2 guarda os CPFs)</td>
+                                </tr>
+                                <tr style="background-color: #FAF9F8;">
+                                    <td style="padding: 6px 12px; font-weight: 600;">4. Procurar Intervalo</td>
+                                    <td style="padding: 6px 12px; color: #484644;">Tipo de busca: exata (FALSO) ou aproximada.</td>
+                                    <td style="padding: 6px 12px;"><code>FALSO</code> (Garante correspondência exata)</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                `
+            },
+            // Slide 10: 8. Integridade de Dados (Página 10 do PDF)
+            {
+                title: "8. Integridade de Dados",
+                subtitle: "Evitando digitações acidentais e erros de secretaria",
+                content: `
+                    <p>Digitar uma nota errada como "11" por pressa ou distração gera graves inconsistências legais e escolares. A **Validação de Dados** nos protege blindando as células.</p>
+                    <div style="display: flex; gap: 24px; margin-top: 15px; align-items: center;">
+                        <div style="flex: 1.2;">
+                            <p style="font-size: 0.92rem; line-height: 1.5; color: #323130; margin-bottom: 10px;">
+                                No Laboratório Técnico, configuraremos uma barreira oficial de entrada de dados para que a coluna de Notas escolares rejeite sumariamente valores que escapem da lógica.
+                            </p>
+                            <p style="font-size: 0.92rem; line-height: 1.5; color: #323130; margin-bottom: 0;">
+                                Você definirá as configurações para aceitar exclusivamente números do tipo <strong>Decimal</strong>, com o valor Mínimo de <strong>0</strong> e Máximo de <strong>10</strong>. Ao testar inserindo a nota 11, o Excel disparará o erro.
+                            </p>
+                        </div>
+                        <div class="info-card" style="flex: 0.8; text-align: center; border-color: #a4262c; background-color: #fdf3f4;">
+                            <span style="font-size: 2.2rem; color: #a4262c; font-weight: 750; display: block; margin-bottom: 4px;">11</span>
+                            <h5 style="color: #a4262c; font-weight: 700; margin-bottom: 4px;">Valor Inválido</h5>
+                            <p style="font-size: 0.72rem; color: #605E5C; margin-bottom: 0; line-height: 1.3;">O Excel bloqueará e impedirá a nota de constar na tabela municipal.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 11: 9. Gráficos de Tendência (Página 11 do PDF)
+            {
+                title: "9. Gráficos de Tendência",
+                subtitle: "Acompanhando o progresso de notas ao longo do tempo",
+                content: `
+                    <p>Para conselhos de classe e devolutivas pedagógicas para as famílias, a visualização cronológica ajuda a identificar o impacto das nossas intervenções e apoios.</p>
+                    <p>No nono desafio, você escolherá o modelo visual mais adequado para representar uma evolução temporal:</p>
+                    <div class="info-grid" style="margin-top: 15px;">
+                        <div class="info-card" style="border-top: 4px solid var(--excel-green); text-align: center;">
+                            <span style="font-size: 1.8rem; display: block; margin-bottom: 4px;">📈</span>
+                            <h4 style="font-size: 0.92rem; margin-bottom: 6px;">Gráfico de Linhas</h4>
+                            <p style="font-size: 0.78rem; line-height: 1.4; color: #605E5C; margin-bottom: 0;"><strong>A Escolha Correta!</strong> Demonstra visualmente as tendências temporais com clareza (subidas, quedas ou platôs).</p>
+                        </div>
+                        <div class="info-card" style="text-align: center; opacity: 0.7;">
+                            <span style="font-size: 1.8rem; display: block; margin-bottom: 4px;">📊</span>
+                            <h4 style="font-size: 0.92rem; margin-bottom: 6px;">Gráfico de Pizza</h4>
+                            <p style="font-size: 0.78rem; line-height: 1.4; color: #605E5C; margin-bottom: 0;">Inadequado para continuidade temporal. Serve para analisar proporções e partes de um todo.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 12: 10. Segurança Escolar (Página 12 do PDF)
+            {
+                title: "10. Segurança Escolar",
+                subtitle: "Evitando alterações acidentais em fórmulas essenciais",
+                content: `
+                    <p>Após estruturar e programar toda a inteligência e as fórmulas lógicas da sua planilha, o diário deve ser protegido antes de ser compartilhado.</p>
+                    <p>O desafio 10 simulará os dois passos formais para garantir que a planilha permaneça intacta:</p>
+                    <div class="info-grid" style="margin-top: 15px;">
+                        <div class="info-card" style="border-left: 4px solid var(--excel-green);">
+                            <h4>🔒 Passo 1: Bloquear Células</h4>
+                            <p style="font-size: 0.8rem; line-height: 1.4; color: #605E5C;">Garantir que as células contendo fórmulas automáticas de notas estejam marcadas como <strong>Bloqueadas</strong> nas propriedades de proteção.</p>
+                        </div>
+                        <div class="info-card" style="border-left: 4px solid var(--excel-green);">
+                            <h4>🛡️ Passo 2: Proteger Planilha</h4>
+                            <p style="font-size: 0.8rem; line-height: 1.4; color: #605E5C;">Ir até a aba superior **Revisão** e acionar o botão **Proteger Planilha**, ativando o bloqueio estrutural geral.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 13: Ética e LGPD Escolar (Página 13 do PDF)
+            {
+                title: "Ética e LGPD Escolar",
+                subtitle: "A Segurança dos Dados Escolares é Inegociável",
+                content: `
+                    <p>Diários escolares carregam informações sensíveis que vão muito além de números: guardam CPFs de responsáveis, relatórios médicos, laudos de necessidades especiais e endereços residenciais.</p>
+                    <p>A **Lei Geral de Proteção de Dados (LGPD)** protege essas informações pessoais e impõe responsabilidades.</p>
+                    <div class="info-card" style="margin-top: 15px; border-left: 5px solid #FF8C00; background-color: #FFF9F0;">
+                        <h4 style="color: #FF8C00; font-size: 0.95rem; margin-bottom: 6px;">⚖️ Dever de Confidencialidade</h4>
+                        <p style="color: #323130; margin-bottom: 0; font-size: 0.86rem; line-height: 1.45;">
+                            Deixar planilhas sem senhas em computadores de uso coletivo, esquecer pen-drives em salas de professores ou enviar dados soltos por aplicativos viola a LGPD e fere a ética profissional docente. Tratar as planilhas com cuidado técnico é proteger a integridade moral da criança.
+                        </p>
+                    </div>
+                `
+            },
+            // Slide 14: O Propósito Final (Página 14 do PDF)
+            {
+                title: "O Propósito Final",
+                subtitle: "A tecnologia a serviço do afeto e do cuidado pedagógico",
+                content: `
+                    <div style="text-align: center; padding: 16px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="font-size: 3.2rem; color: var(--excel-green); line-height: 1; margin-bottom: 12px;">“</div>
+                        <blockquote style="font-family: 'Playfair Display', Georgia, serif; font-style: italic; font-size: 1.3rem; color: var(--excel-green-hover); line-height: 1.6; max-width: 580px; margin: 0 auto 12px auto; padding: 0 16px;">
+                            A tecnologia liberta o professor das planilhas manuais, devolvendo-lhe o tempo precioso que deve ser gasto com o afeto e a didática humana.
+                        </blockquote>
+                        <cite style="font-size: 0.88rem; font-weight: 700; color: #605E5C; font-style: normal; display: block; margin-top: 6px;">— Equipe de Coordenação Pedagógica</cite>
+                    </div>
+                `
+            },
+            // Slide 15: Certificação de Proficiência (Página 15 do PDF)
+            {
+                title: "Certificação de Proficiência",
+                subtitle: "O reconhecimento formal das suas competências",
+                content: `
+                    <p style="margin-bottom: 16px;">Ao finalizar com sucesso os 10 passos do Laboratório, o sistema emitirá automaticamente o seu Certificado de Literacia Docente.</p>
+                    <p style="margin-bottom: 20px; color: #484644;">Este diploma é um atestado das suas novas habilidades de manipulação técnica, formatação de diários, integridade de dados e proteção escolar.</p>
+                    <div class="info-grid">
+                        <div class="info-card" style="text-align: center; display: flex; flex-direction: column; align-items: center; justify-content: center; padding: 18px;">
+                            <span style="font-size: 2.2rem; margin-bottom: 4px;">🎓</span>
+                            <h4 style="font-size: 0.95rem; margin-bottom: 4px; color: var(--excel-green-hover);">Evolução Profissional</h4>
+                            <p style="font-size: 0.78rem; line-height: 1.3; color: #605E5C; margin-bottom: 0;">Você poderá baixar a imagem de alta definição gerada em tempo real para compor sua pasta profissional.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 16: Suporte & Autoria (Página 16 do PDF)
+            {
+                title: "Suporte Técnico & Autoria",
+                subtitle: "Os Responsáveis pelo Itinerário Extensionista",
+                content: `
+                    <p style="margin-bottom: 20px;">Caso você precise de auxílio com a navegação do Laboratório de Literacia Docente ou possua sugestões para novas capacitações:</p>
+                    <div class="info-grid">
+                        <div class="info-card" style="border-top: 4px solid var(--excel-green);">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">🛠️ Suporte Técnico</h4>
+                            <p style="font-size: 1.1rem; font-weight: 700; color: var(--excel-green); margin-bottom: 4px;">Gabriel H. Rodrigues</p>
+                            <p style="font-size: 0.78rem; color: #605E5C; line-height: 1.4; margin-bottom: 0;">Responsável técnico de TI, suporte ao ambiente virtual e correção de inconsistências do código.</p>
+                        </div>
+                        <div class="info-card" style="border-top: 4px solid var(--excel-green);">
+                            <h4 style="font-size: 0.95rem; margin-bottom: 4px;">✍️ Autor do Projeto</h4>
+                            <p style="font-size: 1.1rem; font-weight: 700; color: var(--excel-green); margin-bottom: 4px;">Juliano Prianti</p>
+                            <p style="font-size: 0.78rem; color: #605E5C; line-height: 1.4; margin-bottom: 0;">Docente Idealizador e Autor do Itinerário Extensionista de Capacitação e Literacia Digital Escolar.</p>
+                        </div>
+                    </div>
+                `
+            },
+            // Slide 17: A Hora da Prática (Página 17 e 18 do PDF)
+            {
+                title: "A Hora da Prática",
+                subtitle: "Você compreendeu a teoria. Agora, mãos na massa!",
+                content: `
+                    <div style="text-align: center; padding: 20px 0; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+                        <div style="font-size: 3.8rem; margin-bottom: 16px; animation: bounce 2s infinite;">🎮</div>
+                        <p style="font-size: 1.1rem; max-width: 620px; margin: 0 auto 24px auto; line-height: 1.6; color: #323130;">
+                            A teoria foi absorvida com sucesso! Agora chegou a hora de aplicar suas habilidades. Acesse o nosso laboratório prático interativo do Microsoft Excel 365 e vença os 10 desafios!
+                        </p>
+                        <button id="btn-start-simulator-body" class="next-challenge-btn pulse-btn" style="font-size: 1.1rem; padding: 16px 36px; border-radius: 6px; height: auto; font-weight: 700; box-shadow: var(--shadow-lg);">
+                            ▶ INICIAR SIMULADOR
+                        </button>
+                    </div>
+                `
+            },
+            // Slide 18: Referências (Página 19 do PDF corrigida e premium)
+            {
+                title: "Referências e Créditos",
+                subtitle: "Fontes das Imagens e Elementos Visuais",
+                content: `
+                    <p style="font-size: 0.88rem; margin-bottom: 15px; color: #605E5C;">Todas as referências utilizadas para compor este itinerário são disponibilizadas abaixo por meio de links funcionais e créditos autorais:</p>
+                    <div class="sources-list" style="max-height: 280px; overflow-y: auto; padding-right: 8px;">
+                        <div class="source-item">
+                            <div class="source-info-left">
+                                <a href="https://kindercraze.com" target="_blank" class="source-title-link">Kinder Craze — Sala de Tecnologia Escolar</a>
+                                <span class="source-domain">kindercraze.com</span>
+                            </div>
+                            <a href="https://kindercraze.com/wp-content/uploads/2014/02/teachercomputer114.jpg" target="_blank" class="source-url-btn">Ver Imagem</a>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-info-left">
+                                <a href="https://depictdatastudio.com" target="_blank" class="source-title-link">Depict Data Studio — Formatação Condicional</a>
+                                <span class="source-domain">depictdatastudio.com</span>
+                            </div>
+                            <a href="https://cdn.kicksdigital.com/depictdatastudio.com/2021/03/Conditional-Formatting_10.png" target="_blank" class="source-url-btn">Ver Imagem</a>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-info-left">
+                                <a href="https://www.freepik.com" target="_blank" class="source-title-link">Freepik — Segurança de Dados no Computador</a>
+                                <span class="source-domain">freepik.com</span>
+                            </div>
+                            <a href="https://img.freepik.com/premium-photo/cyber-security-data-protection-concept-with-digital-lock-circuit-background_136766-154.jpg" target="_blank" class="source-url-btn">Ver Imagem</a>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-info-left">
+                                <a href="https://www.vecteezy.com" target="_blank" class="source-title-link">Vecteezy — Ilustração 3D de Formatura e Certificado</a>
+                                <span class="source-domain">vecteezy.com</span>
+                            </div>
+                            <a href="https://static.vecteezy.com/system/resources/previews/045/907/692/non_2x/graduation-diploma-certificate-with-medal-and-cap-educational-achievement-3d-icon-realistic-vector.jpg" target="_blank" class="source-url-btn">Ver Imagem</a>
+                        </div>
+                        <div class="source-item">
+                            <div class="source-info-left">
+                                <a href="https://smithsystem.com" target="_blank" class="source-title-link">Smith System — Sala de Aula Colaborativa e Computadores</a>
+                                <span class="source-domain">smithsystem.com</span>
+                            </div>
+                            <a href="https://smithsystem.com/smithfiles/wp-content/uploads/sites/2/2015/09/2024-Cat-Elementary-copy-scaled.jpg" target="_blank" class="source-url-btn">Ver Imagem</a>
+                        </div>
+                    </div>
+                `
+            }
+        ];
+
+        // Lógica de Renderização e Controle da Apresentação Teórica
+        function renderActiveSlide() {
+            const currentIdx = state.activeSlideIndex;
+            const slide = state.slides[currentIdx];
+            
+            const container = document.getElementById("active-slide-card");
+            if (!container) return;
+
+            container.innerHTML = `
+                <div class="pres-slide-header">
+                    <span style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--excel-green); letter-spacing: 0.5px; display: block; margin-bottom: 2px;">Slide ${currentIdx + 1} de ${state.slides.length}</span>
+                    <h2>${slide.title}</h2>
+                    <p style="font-size: 0.95rem; color: #605E5C; font-weight: 500; border-bottom: 1px solid var(--excel-border); padding-bottom: 10px; margin-bottom: 0;">${slide.subtitle}</p>
+                </div>
+                <div class="pres-slide-body">
+                    ${slide.content}
+                </div>
+            `;
+
+            // Atualizar barra de progresso da apresentação
+            const percent = ((currentIdx + 1) / state.slides.length) * 100;
+            const bar = document.getElementById("pres-progress-bar-inner");
+            if (bar) bar.style.width = `${percent}%`;
+
+            const progressTxt = document.getElementById("pres-progress-text");
+            if (progressTxt) progressTxt.innerText = `Slide ${currentIdx + 1} de ${state.slides.length}`;
+
+            // Atualizar classe ativa na barra lateral de slides
+            const menuItems = document.querySelectorAll(".pres-menu-item");
+            menuItems.forEach((item, idx) => {
+                if (idx === currentIdx) {
+                    item.classList.add("active");
+                    item.scrollIntoView({ block: "nearest", behavior: "smooth" });
+                } else {
+                    item.classList.remove("active");
+                }
+            });
+
+            // Controlar habilitação do botão "Anterior"
+            const prevBtn = document.getElementById("btn-prev-slide");
+            if (prevBtn) {
+                prevBtn.disabled = currentIdx === 0;
+                prevBtn.style.opacity = currentIdx === 0 ? "0.4" : "1";
+                prevBtn.style.cursor = currentIdx === 0 ? "not-allowed" : "pointer";
+            }
+
+            // Mudar texto/evento do botão próximo no último slide
+            const nextBtn = document.getElementById("btn-next-slide");
+            if (nextBtn) {
+                if (currentIdx === state.slides.length - 1) {
+                    nextBtn.innerHTML = "Simulador 🎮";
+                    nextBtn.onclick = () => {
+                        goToVirtualEnv();
+                    };
+                } else {
+                    nextBtn.innerHTML = "Próximo ➡";
+                    nextBtn.onclick = () => {
+                        nextSlide();
+                    };
+                }
+            }
+
+            // Ligar clique do botão interno do Slide de Capa
+            const startBtn = document.getElementById("btn-start-presentation");
+            if (startBtn) {
+                startBtn.onclick = () => {
+                    initAudio();
+                    state.activeSlideIndex = 1;
+                    renderActiveSlide();
+                };
+            }
+
+            // Ligar clique do botão interno do Slide "Hora da Prática"
+            const startSimBodyBtn = document.getElementById("btn-start-simulator-body");
+            if (startSimBodyBtn) {
+                startSimBodyBtn.onclick = () => {
+                    goToVirtualEnv();
+                };
+            }
+        }
+
+        function nextSlide() {
+            if (state.activeSlideIndex < state.slides.length - 1) {
+                state.activeSlideIndex++;
+                renderActiveSlide();
+            }
+        }
+
+        function prevSlide() {
+            if (state.activeSlideIndex > 0) {
+                state.activeSlideIndex--;
+                renderActiveSlide();
+            }
+        }
+
+        function jumpToSlide(idx) {
+            state.activeSlideIndex = idx;
+            renderActiveSlide();
+        }
+
+        // Transição: Slides -> Simulador
+        function goToVirtualEnv() {
+            initAudio();
+            playSuccessSound();
+            
+            const presContainer = document.getElementById("presentation-container");
+            const appContainer = document.getElementById("app-container");
+            
+            presContainer.style.opacity = "0";
+            setTimeout(() => {
+                presContainer.classList.add("hidden");
+                appContainer.classList.remove("hidden");
+                appContainer.style.opacity = "0";
+                
+                // Forçar redesenho (reflow) do navegador
+                appContainer.offsetHeight;
+                
+                appContainer.style.opacity = "1";
+                appContainer.style.transition = "opacity 0.3s ease";
+                
+                // Carregar desafio atual no simulador
+                selectChallenge(state.currentChallenge);
+            }, 300);
+        }
+
+        // Transição: Simulador -> Slides
+        function goToSlides() {
+            initAudio();
+            
+            const presContainer = document.getElementById("presentation-container");
+            const appContainer = document.getElementById("app-container");
+            
+            appContainer.style.opacity = "0";
+            setTimeout(() => {
+                appContainer.classList.add("hidden");
+                presContainer.classList.remove("hidden");
+                presContainer.style.opacity = "0";
+                
+                // Forçar redesenho (reflow) do navegador
+                presContainer.offsetHeight;
+                
+                presContainer.style.opacity = "1";
+                presContainer.style.transition = "opacity 0.3s ease";
+                
+                renderActiveSlide();
+            }, 300);
+        }
+
+        // Ativar/Desativar Tela Cheia para o Projetor
+        function toggleFullscreen() {
+            initAudio();
+            const container = document.getElementById("presentation-container");
+            const btnIcon = document.getElementById("fullscreen-btn-icon");
+            const btnText = document.getElementById("fullscreen-btn-text");
+            
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !document.msFullscreenElement) {
+                // Ativar Tela Cheia
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                if (btnIcon) btnIcon.innerText = "❌";
+                if (btnText) btnText.innerText = "Sair";
+            } else {
+                // Sair de Tela Cheia
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                if (btnIcon) btnIcon.innerText = "🖥️";
+                if (btnText) btnText.innerText = "Tela Cheia";
+            }
+        }
+
+        // Função de Impressão Nativa a PDF
+        function printActiveSlide() {
+            initAudio();
+            window.print();
+        }
 
         // Renderizar a Sidebar Lateral de Desafios
         function renderSidebar() {
@@ -4260,6 +5500,67 @@
                 }
             });
 
+            // --- INICIALIZAÇÃO DA APRESENTAÇÃO DE SLIDES (HOME) ---
+            // Cliques nos botões de navegação dos slides
+            const btnPrev = document.getElementById("btn-prev-slide");
+            const btnNext = document.getElementById("btn-next-slide");
+            
+            if (btnPrev) btnPrev.addEventListener("click", () => { initAudio(); prevSlide(); });
+            if (btnNext) btnNext.addEventListener("click", () => { initAudio(); nextSlide(); });
+
+            // Cliques na lista sumário de slides (Sidebar)
+            const slideMenuItems = document.querySelectorAll(".pres-menu-item");
+            slideMenuItems.forEach(item => {
+                item.addEventListener("click", () => {
+                    initAudio();
+                    const slideIdx = parseInt(item.getAttribute("data-slide"));
+                    jumpToSlide(slideIdx);
+                });
+            });
+
+            // Cliques de transições entre Slides e Simulador
+            const btnStartTop = document.getElementById("btn-start-simulator-top");
+            const btnBackSlides = document.getElementById("btn-back-to-slides");
+
+            if (btnStartTop) btnStartTop.addEventListener("click", goToVirtualEnv);
+            if (btnBackSlides) btnBackSlides.addEventListener("click", goToSlides);
+
+            // Cliques de Tela Cheia e Impressão de Slides
+            const btnFullscreen = document.getElementById("btn-toggle-fullscreen");
+            const btnPrint = document.getElementById("btn-print-slides");
+
+            if (btnFullscreen) btnFullscreen.addEventListener("click", toggleFullscreen);
+            if (btnPrint) btnPrint.addEventListener("click", printActiveSlide);
+
+            // Sincronizar estado do botão de tela cheia com a tecla Esc
+            document.addEventListener("fullscreenchange", () => {
+                const btnIcon = document.getElementById("fullscreen-btn-icon");
+                const btnText = document.getElementById("fullscreen-btn-text");
+                if (document.fullscreenElement) {
+                    if (btnIcon) btnIcon.innerText = "❌";
+                    if (btnText) btnText.innerText = "Sair";
+                } else {
+                    if (btnIcon) btnIcon.innerText = "🖥️";
+                    if (btnText) btnText.innerText = "Tela Cheia";
+                }
+            });
+
+            // Controles de teclado para navegação de slides
+            document.addEventListener("keydown", (e) => {
+                const presContainer = document.getElementById("presentation-container");
+                if (presContainer && !presContainer.classList.contains("hidden")) {
+                    if (e.key === "ArrowRight" || e.key === "Right") {
+                        nextSlide();
+                    } else if (e.key === "ArrowLeft" || e.key === "Left") {
+                        prevSlide();
+                    }
+                }
+            });
+
+            // Inicializar e desenhar o primeiro slide (Home)
+            renderActiveSlide();
+
+            // Preparar o simulador em segundo plano para o momento da prática
             selectChallenge(1);
         });
     </script>
