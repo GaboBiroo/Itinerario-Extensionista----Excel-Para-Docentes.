@@ -301,6 +301,55 @@
             color: #D2D0CE;
         }
 
+        /* Melhorias de Legibilidade e Contraste para o Modo Escuro */
+        body.dark-mode .instruction-card h2 {
+            color: #a3e2bb !important;
+        }
+
+        body.dark-mode .instruction-card strong,
+        body.dark-mode #target-element-name,
+        body.dark-mode .instruction-card code {
+            color: #a3e2bb !important;
+        }
+
+        body.dark-mode .celebration-title {
+            color: #a3e2bb !important;
+        }
+
+        body.dark-mode .celebration-desc {
+            color: #D2D0CE !important;
+        }
+
+        body.dark-mode #btn-challenge-hint {
+            background-color: #252423 !important;
+            color: #F3F2F1 !important;
+            border-color: var(--excel-border) !important;
+        }
+
+        body.dark-mode #btn-challenge-hint:hover {
+            background-color: #323130 !important;
+        }
+
+        body.dark-mode #challenge-hint-text-area {
+            background-color: #3e3b2e !important;
+            color: #fce8a6 !important;
+            border-left-color: #D4AF37 !important;
+        }
+
+        body.dark-mode .challenge-item.active .challenge-title {
+            color: #FFFFFF !important;
+        }
+
+        /* Sobrescrita genérica para cores de texto verde embutidas em dark mode para garantir contraste */
+        body.dark-mode h4[style*="excel-green-hover"],
+        body.dark-mode td[style*="excel-green-hover"],
+        body.dark-mode strong[style*="excel-green-hover"],
+        body.dark-mode span[style*="excel-green-hover"],
+        body.dark-mode p[style*="excel-green-hover"],
+        body.dark-mode div[style*="excel-green-hover"] {
+            color: #a3e2bb !important;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -2045,7 +2094,7 @@
                     appliedFill: false,
                     appliedBorder: false,
                     completed: false,
-                    hint: "Primeiro selecione o cabeçalho clicando em 'Selecionar Cabeçalho (A1:E1)'. Depois, vá na fita de opções superior (guia Página Inicial) e clique no ícone do **Balde de tinta (Preenchimento Verde)** e no ícone da **Grade (Borda)** para aplicar a formatação completa."
+                    hint: "Selecione o cabeçalho (A1:E1) na planilha clicando e arrastando o mouse sobre as células (de 'Disciplina' até '4º Bimestre'), ou simplesmente clique no cabeçalho de linha '1' (o quadradinho cinza na esquerda com o número 1) para selecionar a linha inteira de uma vez. Em seguida, vá na fita de opções superior (guia Página Inicial) e clique no ícone do **Balde de tinta (Preenchimento Verde)** e no ícone da **Grade (Borda)** para aplicar a formatação completa."
                 },
                 {
                     id: 3,
@@ -2060,10 +2109,10 @@
                     title: "4. Lógica Condicional",
                     shortTitle: "Lógica SE",
                     desc: "Montar fórmula com blocos lógicos",
-                    blocks: ["=", "SE", "(", "G2>=6", ";", "\"APROVADO\"", ";", "\"RECUPERAÇÃO\"", ")"],
+                    blocks: ["=", "SE", "(", "B2>=6", ";", "\"APROVADO\"", ";", "\"RECUPERAÇÃO\"", ")"],
                     userSequence: [],
                     completed: false,
-                    hint: "A estrutura de uma função condicional no Excel segue este padrão lógico: **=** (iniciar fórmula), **SE** (condição), **(** (abrir argumentos), **G2>=6** (valor determinante ou teste lógico), **;** (separador), **\"APROVADO\"** (condição se verdadeiro), **;** (separador), **\"RECUPERAÇÃO\"** (condição se falso) e **)** (fechamento). Clique nos blocos nessa ordem exata!"
+                    hint: "A estrutura de uma função condicional no Excel segue este padrão lógico: **=** (iniciar fórmula), **SE** (condição), **(** (abrir argumentos), **B2>=6** (valor determinante ou teste lógico), **;** (separador), **\"APROVADO\"** (condição se verdadeiro), **;** (separador), **\"RECUPERAÇÃO\"** (condição se falso) e **)** (fechamento). Clique nos blocos nessa ordem exata!"
                 },
                 {
                     id: 5,
@@ -2087,7 +2136,11 @@
                     shortTitle: "PROCV de Aluno",
                     desc: "Estruturar o PROCV para buscar CPF",
                     completed: false,
-                    hint: "Preencha as caixas do assistente com estes valores: 1. Valor Procurado: `\"Carlos\"` (com aspas); 2. Matriz Tabela: `A2:B5` (toda a tabela que contém Nome e CPF); 3. Número Índice da Coluna: `2` (pois o CPF está na segunda coluna da seleção); 4. Procurar Intervalo: `FALSO` (busca exata)."
+                    hint: `O <strong>PROCV</strong> serve para buscar informações em uma tabela a partir de um valor de referência. Entenda o que significa cada argumento para estruturar a busca:<br><br>
+• <strong>1. Valor Procurado</strong>: É a informação de referência que você já tem em mãos e deseja procurar. No nosso caso, queremos encontrar os dados do aluno <strong>"Carlos"</strong> (escrevemos com aspas por ser um texto).<br>
+• <strong>2. Matriz Tabela</strong>: É o conjunto de células onde a busca será realizada. Deve cobrir desde a primeira coluna de busca (Nome) até a coluna que contém o dado que queremos de volta (CPF). Portanto, o intervalo é <strong>A2:B5</strong>.<br>
+• <strong>3. Número Índice da Coluna</strong>: É a contagem de colunas dentro da matriz selecionada para indicar de qual coluna extrairemos a resposta. A Coluna 1 é a de Nomes (Coluna A) e a Coluna 2 é a de CPFs (Coluna B). Como queremos trazer o CPF, o índice correspondente é <strong>2</strong>.<br>
+• <strong>4. Procurar Intervalo</strong>: Define se a busca é exata ou aproximada. Usamos <strong>FALSO</strong> para exigir uma <strong>Correspondência Exata</strong>, garantindo que o Excel traga apenas os dados exatos de Carlos (se usássemos VERDADEIRO, ele poderia aproximar para outros nomes se "Carlos" não existisse).`
                 },
                 {
                     id: 8,
@@ -2256,7 +2309,7 @@
             } 
             else if (id === 2) {
                 // DESAFIO 2: FORMATAÇÃO PEDAGÓGICA
-                instructionsText.innerHTML = `Personalize a planilha para torná-la legível! Clicando em <strong>Selecionar Cabeçalho</strong> ou clicando nas células do cabeçalho da tabela (Linha 1: A1 a E1), aplique preenchimento <strong>Verde Escuro</strong> (balde de tinta) e <strong>Todas as Bordas</strong> na Fita de Opções.`;
+                instructionsText.innerHTML = `Personalize a planilha para torná-la legível! Selecione o cabeçalho da tabela (células <strong>A1 a E1</strong> clicando e arrastando sobre elas, ou clicando no cabeçalho de linha <strong>1</strong> na esquerda), e então aplique o preenchimento <strong>Verde Escuro</strong> (balde de tinta) e <strong>Todas as Bordas</strong> na Fita de Opções.`;
                 renderFormattingUI(container);
             } 
             else if (id === 3) {
@@ -2266,7 +2319,7 @@
             } 
             else if (id === 4) {
                 // DESAFIO 4: LÓGICA CONDICIONAL (SE)
-                instructionsText.innerHTML = `Vamos automatizar a divulgação de resultados! Monte a fórmula condicional clicando nos blocos de código abaixo na ordem correta para que se a nota em G2 for maior ou igual a 6 retorne "APROVADO", caso contrário, retorne "RECUPERAÇÃO".`;
+                instructionsText.innerHTML = `Vamos automatizar a divulgação de resultados! Monte a fórmula condicional clicando nos blocos de código abaixo na ordem correta para que se a nota em B2 for maior ou igual a 6 retorne "APROVADO", caso contrário, retorne "RECUPERAÇÃO".`;
                 renderLogicSEUI(container);
             } 
             else if (id === 5) {
@@ -2296,7 +2349,7 @@
             } 
             else if (id === 10) {
                 // DESAFIO 10: SEGURANÇA ESCOLAR
-                instructionsText.innerHTML = `Proteja suas fórmulas contra alterações acidentais! Selecione a célula da média (F2), certifique-se de que está protegida com botão direito (Formatar Células > Proteção > Bloqueada), vá na guia <strong>Revisão</strong> e ative <strong>Proteger Planilha</strong>.`;
+                instructionsText.innerHTML = `Proteja suas fórmulas contra alterações acidentais! Selecione a célula da média (B2), certifique-se de que está protegida com botão direito (Formatar Células > Proteção > Bloqueada), vá na guia <strong>Revisão</strong> e ative <strong>Proteger Planilha</strong>.`;
                 renderSecurityUI(container);
             }
 
@@ -2445,22 +2498,35 @@
         // ================= DESAFIO 2: FORMATAÇÃO PEDAGÓGICA =================
         function renderFormattingUI(container) {
             const ch = state.challenges[1];
-            
+            ch.selectedCells = ch.selectedCells || new Set();
+
             const tableHTML = `
-                <div style="margin-bottom: 12px; display: flex; gap: 10px;">
-                    <button class="next-challenge-btn" id="btn-select-header" style="background-color: #605E5C;">Selecionar Cabeçalho (A1:E1)</button>
-                    <span style="font-size: 0.8rem; display: flex; align-items: center; color: #605E5C;" id="format-selection-status">Status: Nenhum cabeçalho selecionado</span>
+                <div style="margin-bottom: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <span style="font-size: 0.8rem; background-color: var(--excel-bg); border: 1px solid var(--excel-border); padding: 4px 10px; border-radius: 4px; color: var(--excel-text); display: inline-flex; align-items: center; gap: 6px;" id="format-selection-status">
+                        Seleção: Nenhuma célula selecionada
+                    </span>
+                    <span style="font-size: 0.75rem; color: #A19F9D; font-style: italic;">
+                        (Dica: Clique e arraste de A1 a E1, ou clique no número de linha "1" na esquerda)
+                    </span>
                 </div>
                 <div class="spreadsheet-container">
                     <table class="excel-table" id="formatting-table">
                         <thead>
                             <tr>
                                 <th class="row-num-header"></th>
-                                <th class="format-cell" data-col="A">Disciplina</th>
-                                <th class="format-cell" data-col="B">1º Bimestre</th>
-                                <th class="format-cell" data-col="C">2º Bimestre</th>
-                                <th class="format-cell" data-col="D">3º Bimestre</th>
-                                <th class="format-cell" data-col="E">4º Bimestre</th>
+                                <th>A</th>
+                                <th>B</th>
+                                <th>C</th>
+                                <th>D</th>
+                                <th>E</th>
+                            </tr>
+                            <tr>
+                                <th class="row-num-header row-num-header-interactive" style="cursor: pointer;" title="Selecionar toda a linha 1">1</th>
+                                <th class="format-cell" data-col="A" style="cursor: cell;">Disciplina</th>
+                                <th class="format-cell" data-col="B" style="cursor: cell;">1º Bimestre</th>
+                                <th class="format-cell" data-col="C" style="cursor: cell;">2º Bimestre</th>
+                                <th class="format-cell" data-col="D" style="cursor: cell;">3º Bimestre</th>
+                                <th class="format-cell" data-col="E" style="cursor: cell;">4º Bimestre</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -2491,42 +2557,95 @@
             container.appendChild(div);
 
             const formatCells = div.querySelectorAll(".format-cell");
-            const selectHeaderBtn = document.getElementById("btn-select-header");
             const statusLabel = document.getElementById("format-selection-status");
 
-            // Evento de selecionar por clique individual ou botão rápido
-            const toggleSelectCell = (cell) => {
-                initAudio();
-                const col = cell.getAttribute("data-col");
-                if (ch.selectedCells.has(col)) {
-                    ch.selectedCells.delete(col);
-                    cell.classList.remove("cell-selected", "cell-active");
-                } else {
-                    ch.selectedCells.add(col);
-                    cell.classList.add("cell-selected", "cell-active");
+            let isDragging = false;
+            let startColIndex = -1;
+            const cols = ["A", "B", "C", "D", "E"];
+
+            const updateSelectionUI = () => {
+                formatCells.forEach(cell => {
+                    const col = cell.getAttribute("data-col");
+                    if (ch.selectedCells.has(col)) {
+                        cell.classList.add("cell-selected");
+                    } else {
+                        cell.classList.remove("cell-selected");
+                    }
+                });
+
+                // Destacar célula ativa (primeira selecionada)
+                const selectedArr = Array.from(ch.selectedCells).sort();
+                formatCells.forEach(cell => cell.classList.remove("cell-active"));
+                if (selectedArr.length > 0) {
+                    const firstCellCol = selectedArr[0];
+                    const firstCell = Array.from(formatCells).find(c => c.getAttribute("data-col") === firstCellCol);
+                    if (firstCell) firstCell.classList.add("cell-active");
                 }
-                
+
+                // Atualizar texto de status
                 if (ch.selectedCells.size === 5) {
-                    statusLabel.innerHTML = `Status: <strong style="color: var(--excel-green)">Cabeçalho A1:E1 Selecionado!</strong>`;
+                    statusLabel.innerHTML = `Seleção: <strong style="color: var(--excel-selected-cell)">Cabeçalho A1:E1 Selecionado!</strong>`;
                 } else if (ch.selectedCells.size > 0) {
-                    statusLabel.innerText = `Status: ${ch.selectedCells.size} células selecionadas.`;
+                    statusLabel.innerHTML = `Seleção: <strong>${selectedArr.map(c => c + "1").join(", ")}</strong> (${ch.selectedCells.size} selecionadas)`;
                 } else {
-                    statusLabel.innerText = `Status: Nenhum cabeçalho selecionado.`;
+                    statusLabel.innerText = `Seleção: Nenhuma célula selecionada`;
                 }
             };
 
-            formatCells.forEach(cell => {
-                cell.addEventListener("click", () => toggleSelectCell(cell));
+            const selectRange = (startCol, endCol) => {
+                const startIdx = cols.indexOf(startCol);
+                const endIdx = cols.indexOf(endCol);
+                const min = Math.min(startIdx, endIdx);
+                const max = Math.max(startIdx, endIdx);
+                
+                ch.selectedCells.clear();
+                for (let i = min; i <= max; i++) {
+                    ch.selectedCells.add(cols[i]);
+                }
+                updateSelectionUI();
+            };
+
+            // Iniciar cliques de arrastar e soltar (Igual ao Excel!)
+            formatCells.forEach((cell, idx) => {
+                cell.addEventListener("mousedown", (e) => {
+                    initAudio();
+                    isDragging = true;
+                    startColIndex = idx;
+                    ch.selectedCells.clear();
+                    ch.selectedCells.add(cols[idx]);
+                    updateSelectionUI();
+                    e.preventDefault();
+                });
+
+                cell.addEventListener("mouseenter", () => {
+                    if (isDragging && startColIndex !== -1) {
+                        selectRange(cols[startColIndex], cols[idx]);
+                    }
+                });
             });
 
-            selectHeaderBtn.addEventListener("click", () => {
-                ch.selectedCells = new Set(["A", "B", "C", "D", "E"]);
-                formatCells.forEach(cell => {
-                    cell.classList.add("cell-selected");
-                });
-                formatCells[0].classList.add("cell-active"); // Primeira ativa
-                statusLabel.innerHTML = `Status: <strong style="color: var(--excel-green)">Cabeçalho A1:E1 Selecionado!</strong>`;
-            });
+            // Registrar soltura de clique global
+            if (window._prevFormatMouseUp) {
+                window.removeEventListener("mouseup", window._prevFormatMouseUp);
+            }
+            window._prevFormatMouseUp = () => {
+                isDragging = false;
+                startColIndex = -1;
+            };
+            window.addEventListener("mouseup", window._prevFormatMouseUp);
+
+            // Clique interativo no cabeçalho de linha '1' para selecionar a linha inteira
+            const rowHeader = div.querySelector(".row-num-header-interactive");
+            if (rowHeader) {
+                rowHeader.onclick = () => {
+                    initAudio();
+                    ch.selectedCells = new Set(["A", "B", "C", "D", "E"]);
+                    updateSelectionUI();
+                };
+            }
+
+            // Inicializar visualização
+            updateSelectionUI();
 
             // Ativar os botões da barra de ferramentas (Ribbon)
             const fillBtn = document.getElementById("btn-fill");
@@ -2702,8 +2821,8 @@
                             <tr>
                                 <th class="row-num-header"></th>
                                 <th>A</th>
-                                <th>F</th>
-                                <th>G</th>
+                                <th>B</th>
+                                <th>C</th>
                             </tr>
                             <tr>
                                 <th class="row-num-header">1</th>
@@ -2717,7 +2836,7 @@
                                 <td class="row-num-header">2</td>
                                 <td>Arthur Silva</td>
                                 <td>7.5</td>
-                                <td id="se-cell-g2" style="font-weight: 600; color: var(--excel-green-hover);">[Montando...]</td>
+                                <td id="se-cell-c2" style="font-weight: 600; color: var(--excel-green-hover);">[Montando...]</td>
                             </tr>
                         </tbody>
                     </table>
@@ -2750,7 +2869,7 @@
                 { text: "=", correct: true },
                 { text: "SE", correct: true },
                 { text: "(", correct: true },
-                { text: "G2>=6", correct: true },
+                { text: "B2>=6", correct: true },
                 { text: ";", correct: true },
                 { text: `"APROVADO"`, correct: true },
                 { text: ";", correct: true },
@@ -2758,9 +2877,9 @@
                 { text: ")", correct: true },
                 // Distratores
                 { text: "=SE(", correct: false },
-                { text: "G2>6", correct: false },
+                { text: "B2>6", correct: false },
                 { text: `,"APROVADO"`, correct: false },
-                { text: "G2>=60", correct: false }
+                { text: "B2>=60", correct: false }
             ];
 
             // Embaralhar blocos de maneira controlada
@@ -2817,16 +2936,16 @@
             const ch = state.challenges[3];
             const formulaStr = ch.userSequence.join("");
             
-            // Fórmula ideal: =SE(G2>=6;"APROVADO";"RECUPERAÇÃO")
-            const target = `=SE(G2>=6;"APROVADO";"RECUPERAÇÃO")`;
+            // Fórmula ideal: =SE(B2>=6;"APROVADO";"RECUPERAÇÃO")
+            const target = `=SE(B2>=6;"APROVADO";"RECUPERAÇÃO")`;
             
             if (formulaStr === target) {
                 playSuccessSound();
-                document.getElementById("se-cell-g2").innerText = "APROVADO";
+                document.getElementById("se-cell-c2").innerText = "APROVADO";
                 completeChallenge(4);
             } else {
                 playErrorSound();
-                showSEFeedback("A fórmula montada está incorreta. Lembre-se do padrão lógico rígido do Excel: <strong>=</strong> (iniciar) <strong>SE</strong> (condição) <strong>(</strong> (abrir argumentos) <strong>G2>=6</strong> (teste lógico) <strong>;</strong> (separar) <strong>\"APROVADO\"</strong> (verdadeiro) <strong>;</strong> (separar) <strong>\"RECUPERAÇÃO\"</strong> (falso) <strong>)</strong> (fechar). Limpe e tente novamente!", false);
+                showSEFeedback("A fórmula montada está incorreta. Lembre-se do padrão lógico rígido do Excel: <strong>=</strong> (iniciar) <strong>SE</strong> (condição) <strong>(</strong> (abrir argumentos) <strong>B2>=6</strong> (teste lógico) <strong>;</strong> (separar) <strong>\"APROVADO\"</strong> (verdadeiro) <strong>;</strong> (separar) <strong>\"RECUPERAÇÃO\"</strong> (falso) <strong>)</strong> (fechar). Limpe e tente novamente!", false);
             }
         }
 
@@ -3689,127 +3808,183 @@
             // Limpar
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-            // 1. Fundo do Certificado
-            ctx.fillStyle = "#FFFFFF";
+            // 1. Fundo do Certificado - Radial Gradient Premium (Efeito papel marfim)
+            const grad = ctx.createRadialGradient(canvas.width / 2, canvas.height / 2, 50, canvas.width / 2, canvas.height / 2, canvas.width / 1.4);
+            grad.addColorStop(0, "#FDFBF7"); // Centro marfim suave
+            grad.addColorStop(1, "#F5EFE4"); // Bordas papel encorpado
+            ctx.fillStyle = grad;
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            // Bordas verdes sofisticadas do Excel
+            // 2. Bordas Duplas Premium do Excel e Ouro
+            // Borda Externa - Verde Excel Clássico
             ctx.strokeStyle = "var(--excel-green)";
             ctx.lineWidth = 14;
             ctx.strokeRect(7, 7, canvas.width - 14, canvas.height - 14);
 
-            ctx.strokeStyle = "#D2D0CE";
-            ctx.lineWidth = 2;
-            ctx.strokeRect(20, 20, canvas.width - 40, canvas.height - 40);
+            // Margem em branco e Borda Interna Fina - Dourado
+            ctx.strokeStyle = "#D4AF37";
+            ctx.lineWidth = 3;
+            ctx.strokeRect(22, 22, canvas.width - 44, canvas.height - 44);
 
-            // 2. Elementos Decorativos nos Cantos (Gold / Bronze)
-            ctx.fillStyle = "#D4AF37";
-            // Canto superior esquerdo
-            ctx.fillRect(25, 25, 40, 6);
-            ctx.fillRect(25, 25, 6, 40);
-            // Canto superior direito
-            ctx.fillRect(canvas.width - 65, 25, 40, 6);
-            ctx.fillRect(canvas.width - 31, 25, 6, 40);
-            // Canto inferior esquerdo
-            ctx.fillRect(25, canvas.height - 31, 40, 6);
-            ctx.fillRect(25, canvas.height - 65, 6, 40);
-            // Canto inferior direito
-            ctx.fillRect(canvas.width - 65, canvas.height - 31, 40, 6);
-            ctx.fillRect(canvas.width - 31, canvas.height - 65, 6, 40);
+            // Linha interna decorativa cinza-clara
+            ctx.strokeStyle = "#E2E0D8";
+            ctx.lineWidth = 1;
+            ctx.strokeRect(30, 30, canvas.width - 60, canvas.height - 60);
 
-            // 3. Cabeçalho do Diploma
+            // Cantoneiras clássicas douradas (Decorações de Canto em L)
+            ctx.fillStyle = "#C59B27";
+            // Canto Superior Esquerdo
+            ctx.fillRect(35, 35, 30, 3);
+            ctx.fillRect(35, 35, 3, 30);
+            // Canto Superior Direito
+            ctx.fillRect(canvas.width - 65, 35, 30, 3);
+            ctx.fillRect(canvas.width - 38, 35, 3, 30);
+            // Canto Inferior Esquerdo
+            ctx.fillRect(35, canvas.height - 38, 30, 3);
+            ctx.fillRect(35, canvas.height - 65, 3, 30);
+            // Canto Inferior Direito
+            ctx.fillRect(canvas.width - 65, canvas.height - 38, 30, 3);
+            ctx.fillRect(canvas.width - 38, canvas.height - 65, 3, 30);
+
+            // 3. Cabeçalho do Diploma (Tipografia Serifada Elegante)
             ctx.fillStyle = "var(--excel-green-hover)";
             ctx.font = "bold 26px 'Playfair Display', Georgia, serif";
             ctx.textAlign = "center";
             ctx.fillText("CERTIFICADO DE PROFICIÊNCIA DIGITAL", canvas.width / 2, 85);
 
-            ctx.fillStyle = "#605E5C";
-            ctx.font = "italic 16px 'Inter', sans-serif";
+            ctx.fillStyle = "#595959";
+            ctx.font = "italic 14px 'Inter', sans-serif";
             ctx.fillText("Laboratório de Literacia Docente com Planilhas Eletrônicas", canvas.width / 2, 115);
 
-            // Linha decorativa
+            // Linha decorativa dourada com diamante central
             ctx.beginPath();
-            ctx.moveTo(canvas.width / 2 - 120, 135);
-            ctx.lineTo(canvas.width / 2 + 120, 135);
+            ctx.moveTo(canvas.width / 2 - 140, 135);
+            ctx.lineTo(canvas.width / 2 + 140, 135);
             ctx.strokeStyle = "#D4AF37";
-            ctx.lineWidth = 2;
+            ctx.lineWidth = 1.5;
             ctx.stroke();
 
+            // Diamante no centro da linha
+            ctx.fillStyle = "#D4AF37";
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2, 130);
+            ctx.lineTo(canvas.width / 2 + 6, 135);
+            ctx.lineTo(canvas.width / 2, 140);
+            ctx.lineTo(canvas.width / 2 - 6, 135);
+            ctx.closePath();
+            ctx.fill();
+
             // 4. Conteúdo Central de Certificação
-            ctx.fillStyle = "#323130";
+            ctx.fillStyle = "#333333";
             ctx.font = "regular 15px 'Inter', sans-serif";
-            ctx.fillText("Certificamos com honras e reconhecimento que o(a) docente", canvas.width / 2, 180);
+            ctx.fillText("Certificamos com honras e reconhecimento público que o(a) docente", canvas.width / 2, 180);
 
-            // Nome do Docente (Destacado)
+            // Nome do Docente (Destacado em Destaque Absoluto)
             ctx.fillStyle = "var(--excel-green)";
-            ctx.font = "bold 32px 'Playfair Display', serif";
-            ctx.fillText(nomeDocente, canvas.width / 2, 235);
+            ctx.font = "bold 32px 'Playfair Display', Georgia, serif";
+            ctx.fillText(nomeDocente, canvas.width / 2, 230);
 
-            // Descrição Oficial
-            ctx.fillStyle = "#323130";
-            ctx.font = "regular 14px 'Inter', sans-serif";
+            // Linha fina verde sob o nome
+            ctx.beginPath();
+            ctx.moveTo(canvas.width / 2 - 180, 245);
+            ctx.lineTo(canvas.width / 2 + 180, 245);
+            ctx.strokeStyle = "rgba(16, 124, 65, 0.2)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // Descrição Oficial das conquistas
+            ctx.fillStyle = "#444444";
+            ctx.font = "regular 13.5px 'Inter', sans-serif";
             
             const p1 = "concluiu com êxito todos os 10 desafios avançados de Literacia Digital Escolar,";
             const p2 = "demonstrando pleno domínio técnico e metodológico em formatação de diários de classe,";
-            const p3 = "cálculos analíticos, alertas automáticos contra evasão (PROCV, SE, Validação) e segurança.";
+            const p3 = "cálculos analíticos, alertas automáticos contra evasão (PROCV, SE, Validação) e segurança escolar.";
             
             ctx.fillText(p1, canvas.width / 2, 280);
             ctx.fillText(p2, canvas.width / 2, 305);
             ctx.fillText(p3, canvas.width / 2, 330);
 
-            // 5. Selo dourado sofisticado no rodapé lateral
+            // 5. Selo dourado sofisticado no centro-inferior (Prêmio de Destaque)
             ctx.save();
-            ctx.translate(canvas.width / 2, 410);
+            ctx.translate(canvas.width / 2, 400);
+            
+            // Brilho/Sombra suave sob o selo
+            ctx.shadowColor = "rgba(0,0,0,0.15)";
+            ctx.shadowBlur = 8;
+            ctx.shadowOffsetY = 3;
+
             ctx.fillStyle = "#D4AF37";
             ctx.beginPath();
             ctx.arc(0, 0, 42, 0, Math.PI * 2);
             ctx.fill();
             
-            // Relevo interno do selo
-            ctx.strokeStyle = "#FFFFFF";
-            ctx.lineWidth = 2;
+            // Desligar sombra para o restante
+            ctx.shadowBlur = 0;
+            ctx.shadowOffsetY = 0;
+
+            // Relevo interno dourado escuro
+            ctx.strokeStyle = "#C59B27";
+            ctx.lineWidth = 2.5;
             ctx.beginPath();
-            ctx.arc(0, 0, 36, 0, Math.PI * 2);
+            ctx.arc(0, 0, 37, 0, Math.PI * 2);
+            ctx.stroke();
+
+            // Relevo interno branco fino
+            ctx.strokeStyle = "#FFFFFF";
+            ctx.lineWidth = 1;
+            ctx.beginPath();
+            ctx.arc(0, 0, 34, 0, Math.PI * 2);
             ctx.stroke();
 
             // Texto do Selo
             ctx.fillStyle = "#FFFFFF";
-            ctx.font = "bold 10px 'Inter', sans-serif";
+            ctx.font = "bold 9px 'Inter', sans-serif";
             ctx.fillText("APROVADO", 0, -4);
-            ctx.fillText("EXCEL 365", 0, 12);
+            ctx.fillText("EXCEL 365", 0, 10);
             ctx.restore();
 
-            // 6. Linha de Data e Assinaturas
+            // 6. Linha de Data e Assinaturas (Perfeitamente Balanceadas)
             const dataAtual = new Date().toLocaleDateString('pt-BR');
             
-            // Esquerda: Data
-            ctx.fillStyle = "#323130";
-            ctx.font = "bold 13px 'Inter', sans-serif";
-            ctx.fillText(`Emitido em: ${dataAtual}`, 170, 480);
-            ctx.font = "regular 11px 'Inter', sans-serif";
-            ctx.fillText("Suporte de Tecnologia Escolar", 170, 500);
-
-            // Direita: Assinatura
-            ctx.fillStyle = "#323130";
-            ctx.font = "bold 13px 'Inter', sans-serif";
-            ctx.fillText("Coord. Literacia Digital Docente", canvas.width - 170, 480);
-            ctx.font = "regular 11px 'Inter', sans-serif";
-            ctx.fillText("Laboratório do Professor Especialista", canvas.width - 170, 500);
-
-            // Linha fina sobre a assinatura
+            // Assinatura Esquerda (Suporte Técnico: Gabriel H. Rodrigues)
             ctx.beginPath();
-            ctx.moveTo(canvas.width - 270, 460);
-            ctx.lineTo(canvas.width - 70, 460);
+            ctx.moveTo(80, 470);
+            ctx.lineTo(280, 470);
             ctx.strokeStyle = "#A19F9D";
             ctx.lineWidth = 1;
             ctx.stroke();
 
+            ctx.fillStyle = "#222222";
+            ctx.font = "bold 13px 'Inter', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("Gabriel H. Rodrigues", 180, 490);
+            ctx.font = "regular 11px 'Inter', sans-serif";
+            ctx.fillStyle = "#666666";
+            ctx.fillText("Suporte Técnico", 180, 508);
+
+            // Assinatura Direita (Autor do Projeto: Juliano Prianti)
             ctx.beginPath();
-            ctx.moveTo(70, 460);
-            ctx.lineTo(270, 460);
+            ctx.moveTo(canvas.width - 280, 470);
+            ctx.lineTo(canvas.width - 80, 470);
             ctx.strokeStyle = "#A19F9D";
             ctx.lineWidth = 1;
             ctx.stroke();
+
+            ctx.fillStyle = "#222222";
+            ctx.font = "bold 13px 'Inter', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText("Juliano Prianti", canvas.width - 180, 490);
+            ctx.font = "regular 11px 'Inter', sans-serif";
+            ctx.fillStyle = "#666666";
+            ctx.fillText("Autor do Itinerário Extensionista", canvas.width - 180, 508);
+            ctx.font = "regular 9.5px 'Inter', sans-serif";
+            ctx.fillText("de Capacitação Escolar", canvas.width - 180, 521);
+
+            // Data no Centro
+            ctx.fillStyle = "#777777";
+            ctx.font = "regular 11px 'Inter', sans-serif";
+            ctx.textAlign = "center";
+            ctx.fillText(`Emitido em: ${dataAtual}`, canvas.width / 2, 505);
         }
 
         function downloadCertificate() {
