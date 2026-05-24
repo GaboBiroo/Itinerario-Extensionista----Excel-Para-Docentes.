@@ -2324,12 +2324,12 @@
             } 
             else if (id === 5) {
                 // DESAFIO 5: MAPA DE CALOR (FORMATAÇÃO CONDICIONAL)
-                instructionsText.innerHTML = `Identifique rapidamente os alunos em risco! Com as notas selecionadas (coluna H), clique no botão <strong>Formatação Condicional</strong> no menu superior e ative o alerta para pintar automaticamente de vermelho as notas <strong>menores que 5</strong>.`;
+                instructionsText.innerHTML = `Identifique rapidamente os alunos em risco! Com as notas selecionadas (coluna C), clique no botão <strong>Formatação Condicional</strong> no menu superior e ative o alerta para pintar automaticamente de vermelho as notas <strong>menores que 5</strong>.`;
                 renderHeatmapUI(container);
             } 
             else if (id === 6) {
                 // DESAFIO 6: FILTRO DE EVASÃO
-                instructionsText.innerHTML = `Precisamos focar nos alunos com frequência abaixo do ideal (menor que 75%). Clique na seta de filtro no cabeçalho da coluna <strong>Frequência (F1)</strong> e aplique a regra para isolar estes casos críticos.`;
+                instructionsText.innerHTML = `Precisamos focar nos alunos com frequência abaixo do ideal (menor que 75%). Clique na seta de filtro no cabeçalho da coluna <strong>Frequência</strong> e aplique a regra para isolar estes casos críticos.`;
                 renderFilterUI(container);
             } 
             else if (id === 7) {
@@ -2997,8 +2997,20 @@
         }
 
         // ================= DESAFIO 5: MAPA DE CALOR =================
+        // ================= DESAFIO 5: MAPA DE CALOR =================
         function renderHeatmapUI(container) {
+            const ch = state.challenges[4];
+            ch.selectedCells = ch.selectedCells || new Set();
+
             const tableHTML = `
+                <div style="margin-bottom: 12px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap;">
+                    <span style="font-size: 0.8rem; background-color: var(--excel-bg); border: 1px solid var(--excel-border); padding: 4px 10px; border-radius: 4px; color: var(--excel-text); display: inline-flex; align-items: center; gap: 6px;" id="heatmap-selection-status">
+                        Seleção: Nenhuma célula selecionada
+                    </span>
+                    <span style="font-size: 0.75rem; color: #A19F9D; font-style: italic;">
+                        (Dica: Clique e arraste de C2 a C5, ou clique na letra da coluna "C" no topo)
+                    </span>
+                </div>
                 <div class="spreadsheet-container">
                     <table class="excel-table">
                         <thead>
@@ -3006,7 +3018,7 @@
                                 <th class="row-num-header"></th>
                                 <th>A</th>
                                 <th>B</th>
-                                <th>C</th>
+                                <th class="col-c-header-interactive" style="cursor: pointer;" title="Selecionar toda a coluna C">C</th>
                             </tr>
                             <tr>
                                 <th class="row-num-header">1</th>
@@ -3020,25 +3032,25 @@
                                 <td class="row-num-header">2</td>
                                 <td>Arthur Silva</td>
                                 <td>80%</td>
-                                <td class="heatmap-cell cell-selected" data-val="7.5">7.5</td>
+                                <td class="heatmap-cell" data-row="2" data-val="7.5" style="cursor: cell;">7.5</td>
                             </tr>
                             <tr>
                                 <td class="row-num-header">3</td>
                                 <td>Beatriz Souza</td>
                                 <td>65%</td>
-                                <td class="heatmap-cell cell-selected" data-val="4.0">4.0</td>
+                                <td class="heatmap-cell" data-row="3" data-val="4.0" style="cursor: cell;">4.0</td>
                             </tr>
                             <tr>
                                 <td class="row-num-header">4</td>
                                 <td>Carlos Santos</td>
                                 <td>90%</td>
-                                <td class="heatmap-cell cell-selected" data-val="8.5">8.5</td>
+                                <td class="heatmap-cell" data-row="4" data-val="8.5" style="cursor: cell;">8.5</td>
                             </tr>
                             <tr>
                                 <td class="row-num-header">5</td>
                                 <td>Diana Costa</td>
                                 <td>70%</td>
-                                <td class="heatmap-cell cell-selected" data-val="3.5">3.5</td>
+                                <td class="heatmap-cell" data-row="5" data-val="3.5" style="cursor: cell;">3.5</td>
                             </tr>
                         </tbody>
                     </table>
@@ -3050,27 +3062,180 @@
             div.innerHTML = tableHTML;
             container.appendChild(div);
 
+            const heatmapCells = div.querySelectorAll(".heatmap-cell");
+            const statusLabel = document.getElementById("heatmap-selection-status");
+
+            let isDragging = false;
+            let startRowIndex = -1;
+            const rows = [2, 3, 4, 5];
+
+            const updateSelectionUI = () => {
+                const selectedArr = Array.from(ch.selectedCells).sort((a, b) => a - b);
+                
+                heatmapCells.forEach(cell => {
+                    const row = parseInt(cell.getAttribute("data-row"));
+                    
+                    // Resetar estilos padrão
+                    cell.style.border = "1px solid var(--excel-border)";
+                    cell.style.backgroundColor = "";
+                    cell.style.color = "";
+                    
+                    if (ch.selectedCells.has(row)) {
+                        // Aplicar fundo verde transparente da seleção
+                        cell.style.backgroundColor = "var(--excel-selection-bg)";
+                        
+                        // Aplicar borda verde espessa nas laterais
+                        cell.style.borderLeft = "2px solid var(--excel-selected-cell)";
+                        cell.style.borderRight = "2px solid var(--excel-selected-cell)";
+                        
+                        // Se for o topo da seleção (borda superior do retângulo)
+                        if (row === selectedArr[0]) {
+                            cell.style.borderTop = "2px solid var(--excel-selected-cell)";
+                        } else {
+                            cell.style.borderTop = "1px solid var(--excel-border)";
+                        }
+                        
+                        // Se for a base da seleção (borda inferior do retângulo)
+                        if (row === selectedArr[selectedArr.length - 1]) {
+                            cell.style.borderBottom = "2px solid var(--excel-selected-cell)";
+                        } else {
+                            cell.style.borderBottom = "1px solid var(--excel-border)";
+                        }
+                    }
+                });
+
+                // Destacar célula ativa (a primeira clicada fica branca como no Excel)
+                heatmapCells.forEach(cell => cell.classList.remove("cell-active"));
+                if (selectedArr.length > 0) {
+                    const firstCellRow = selectedArr[0];
+                    const firstCell = Array.from(heatmapCells).find(c => parseInt(c.getAttribute("data-row")) === firstCellRow);
+                    if (firstCell) {
+                        firstCell.classList.add("cell-active");
+                        firstCell.style.backgroundColor = "#FFFFFF";
+                        
+                        if (document.body.classList.contains("dark-mode")) {
+                            firstCell.style.backgroundColor = "#252423";
+                        }
+                    }
+                }
+
+                // Preservar cor de alerta vermelha se o mapa de calor já foi aplicado
+                if (ch.completed) {
+                    heatmapCells.forEach(cell => {
+                        const val = parseFloat(cell.getAttribute("data-val"));
+                        if (val < 5.0) {
+                            cell.style.backgroundColor = "#FDE7E9";
+                            cell.style.color = "#A80000";
+                            cell.style.fontWeight = "600";
+                            
+                            if (document.body.classList.contains("dark-mode")) {
+                                cell.style.backgroundColor = "#2d1618";
+                                cell.style.color = "#ff858c";
+                            }
+                        }
+                    });
+                }
+
+                // Atualizar texto de status
+                if (ch.selectedCells.size === 4) {
+                    statusLabel.innerHTML = `Seleção: <strong style="color: var(--excel-selected-cell)">Intervalo C2:C5 Selecionado!</strong>`;
+                } else if (ch.selectedCells.size > 0) {
+                    statusLabel.innerHTML = `Seleção: <strong>${selectedArr.map(r => "C" + r).join(", ")}</strong> (${ch.selectedCells.size} selecionadas)`;
+                } else {
+                    statusLabel.innerText = `Seleção: Nenhuma célula selecionada`;
+                }
+            };
+
+            const selectRange = (startRow, endRow) => {
+                const min = Math.min(startRow, endRow);
+                const max = Math.max(startRow, endRow);
+                
+                ch.selectedCells.clear();
+                for (let i = min; i <= max; i++) {
+                    ch.selectedCells.add(i);
+                }
+                updateSelectionUI();
+            };
+
+            // Iniciar cliques de arrastar e soltar (Igual ao Excel!)
+            heatmapCells.forEach((cell, idx) => {
+                cell.addEventListener("mousedown", (e) => {
+                    initAudio();
+                    isDragging = true;
+                    startRowIndex = rows[idx];
+                    ch.selectedCells.clear();
+                    ch.selectedCells.add(rows[idx]);
+                    updateSelectionUI();
+                    e.preventDefault();
+                });
+
+                cell.addEventListener("mouseenter", () => {
+                    if (isDragging && startRowIndex !== -1) {
+                        selectRange(startRowIndex, rows[idx]);
+                    }
+                });
+            });
+
+            // Registrar soltura de clique global
+            if (window._prevHeatmapMouseUp) {
+                window.removeEventListener("mouseup", window._prevHeatmapMouseUp);
+            }
+            window._prevHeatmapMouseUp = () => {
+                isDragging = false;
+                startRowIndex = -1;
+            };
+            window.addEventListener("mouseup", window._prevHeatmapMouseUp);
+
+            // Clique interativo no cabeçalho de coluna 'C' para selecionar a coluna de notas inteira
+            const colHeader = div.querySelector(".col-c-header-interactive");
+            if (colHeader) {
+                colHeader.onclick = () => {
+                    initAudio();
+                    ch.selectedCells = new Set([2, 3, 4, 5]);
+                    updateSelectionUI();
+                };
+            }
+
+            // Inicializar visualização
+            updateSelectionUI();
+
             // Destacar o botão de formatação condicional no Ribbon!
             const condFormattingBtn = document.getElementById("btn-cond-formatting");
             condFormattingBtn.classList.add("highlight-success");
 
             condFormattingBtn.onclick = () => {
                 initAudio();
+
+                if (ch.selectedCells.size < 4) {
+                    playErrorSound();
+                    showHeatmapFeedback("Por favor, selecione primeiro o intervalo de Notas (colunas C2 até C5) para aplicar a Formatação Condicional!", false);
+                    return;
+                }
                 
                 // Aplicar a classe heatmap-danger em notas < 5
-                const cells = document.querySelectorAll(".heatmap-cell");
-                cells.forEach(c => {
+                heatmapCells.forEach(c => {
                     const val = parseFloat(c.getAttribute("data-val"));
-                    c.classList.remove("cell-selected"); // Desmarcar seleção azul
                     if (val < 5.0) {
                         c.classList.add("heatmap-danger");
                     }
                 });
 
                 playSuccessSound();
+                ch.completed = true;
+                updateSelectionUI(); // Atualizar visualização preservando estilo de sucesso
                 condFormattingBtn.classList.remove("highlight-success");
                 completeChallenge(5);
             };
+        }
+
+        function showHeatmapFeedback(text, isSuccess) {
+            const area = document.getElementById("heatmap-feedback-area");
+            if (!area) return;
+            area.innerHTML = `
+                <div class="challenge-feedback ${isSuccess ? 'success' : 'info'}">
+                    <span>${isSuccess ? '🎉' : '💡'} ${text}</span>
+                </div>
+            `;
         }
 
         // ================= DESAFIO 6: FILTRO DE EVASÃO =================
