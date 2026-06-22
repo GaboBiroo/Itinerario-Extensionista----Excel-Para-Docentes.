@@ -310,7 +310,6 @@ chapters_data = [
         "summary": "Implementação do bloqueio preventivo de fórmulas e encriptação com senha de planilhas para garantir a integridade dos dados e conformidade ética com a LGPD. <strong>Exemplos:</strong> (1) Blindagem de colunas matemáticas; (2) Criptografia de dados sensíveis; (3) Permissões na nuvem."
     }
 ]
-"""
 
 # Vamos escrever a lógica de injeção desses dados de forma robusta e limpa em Python
 # O script buscará as linhas onde `state.docChapters` é declarado e substituirá pela nova estrutura Docs-Style / Landing page com atalhos funcionais e textos longos de alta fidelidade pedagógica.
